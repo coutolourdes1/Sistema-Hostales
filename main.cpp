@@ -344,13 +344,13 @@ int main()
     }
     case 6: // Consulta Top Tres Hostales
     {
-      set<string> topTresHostales = controladorHostales->solicitarTopTresHostales();
-      set<string>::iterator iterHostal;
+      mapTopTres topTresHostales = controladorHostales->solicitarTopTresHostales();
+      mapTopTres::iterator iterHostal;
       int posicion = 1;
 
       for (iterHostal = topTresHostales.begin(); iterHostal != topTresHostales.end(); iterHostal++)
       {
-        cout << posicion << ") " << (*iterHostal) << endl;
+        cout << posicion << ") " << iterHostal->second << endl;
         posicion++;
       }
 

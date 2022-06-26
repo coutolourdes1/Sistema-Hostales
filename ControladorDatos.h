@@ -17,9 +17,7 @@ private:
 
 public:
     static controladorDatos *getInstancia();
-
-
-
+    
     void AgregarHuesped();
     void AgregarEmpleado();
     void AgregarHostales();

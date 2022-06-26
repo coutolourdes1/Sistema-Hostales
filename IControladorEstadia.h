@@ -36,7 +36,7 @@ public:
     virtual void liberarMemoriaCalificacion() = 0;
     virtual estadia *getEstadiaSeleccionada() = 0;
     virtual mapColEstadias listarEstadias() = 0;
-    virtual DTInformacionEstadia informacionEstadia() = 0;
+    virtual mapColInfoEstadia informacionEstadia() = 0;
     virtual DTReserva informacionReservaAsociada() = 0;
     virtual int getNuevoNumero() = 0;
     virtual void setEstadiaBuscada(int) = 0;
