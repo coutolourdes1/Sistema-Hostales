@@ -9,6 +9,7 @@
 #include "ControladorResenia.h"
 #include "ControladorReserva.h"
 #include "ControladorEmpleados.h"
+#include "ControladorDatos.h"
 
 // #include <string>
 // #include <iterator>
@@ -27,6 +28,7 @@ class fabrica {
         IControladorResenia* getControladorResenia();
         IControladorReserva* getControladorReserva();
         IControladorEmpleado* getControladorEmpleado();
+        controladorDatos* getControladorDatos();
 };
 
 #endif

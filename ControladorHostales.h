@@ -107,6 +107,7 @@ public:
 
     // CASO DE USO: REALIZAR RESERVA
     mapColHostalesCal solicitarListaHostalesCal();
+    //seleccionar hostal
     mapColHabitaciones habitacionesDispDeHostal(string, DTFecha, DTFecha, bool);
     void seleccionarHabitacion(int);
     mapDTHuespedes solicitarDTHuespedes();

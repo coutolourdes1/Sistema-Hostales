@@ -5,6 +5,7 @@
 #include "IControladorEmpleado.h"
 #include "IControladorColecciones.h"
 #include "IControladorResenia.h"
+#include "ControladorDatos.h"
 #include "Fabrica.h"
 
 int main()
@@ -18,11 +19,12 @@ int main()
   //IControladorResenia *controladorResenia = fabrica->getControladorResenia();
   IControladorEmpleado *controladorEmpleado = fabrica->getControladorEmpleado();
   //IControladorColecciones *controladorColecciones = fabrica->getControladorColecciones();
+  controladorDatos *controladorDatos = fabrica->getControladorDatos();
 
   int mvar1;
   do
   {
-
+    cout << "0. Cargar datos. \n";
     cout << "1. Alta Usuario. \n";
     cout << "2. Alta Hostal. \n";
     cout << "3. Alta Habitacion. \n";
@@ -45,6 +47,16 @@ int main()
     cin >> mvar1;
     switch (mvar1)
     {
+    case 0:
+    {
+      controladorDatos->AgregarHuesped();
+      controladorDatos->AgregarEmpleado();
+      controladorDatos->AgregarHostales();
+      controladorDatos->AgregarHabitaciones();
+      //controladorDatos->AgregarEmpleadoAHostel(); 
+      
+      break;
+    } 
     case 1: // ALTA USUARIO
     {
       string email;

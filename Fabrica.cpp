@@ -39,3 +39,7 @@ IControladorReserva* fabrica::getControladorReserva(){
 IControladorEmpleado* fabrica::getControladorEmpleado(){
     return controladorEmpleado::getInstancia();
 }
+
+controladorDatos* fabrica::getControladorDatos(){
+    return controladorDatos::getInstancia();
+}
