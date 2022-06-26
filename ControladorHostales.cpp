@@ -224,7 +224,7 @@ mapColDTHostales controladorHostales::obtenerHostalesRegistrados()
     for (it = coleccionHostales->begin(); it != coleccionHostales->end(); it++)
     {
         hostal *h = it->second;
-        DTHostal dth = DTHostal(h->getNombreHostal(), h->getTelHostal(), h->getDireccionHostal());
+        DTHostal dth = DTHostal(h->getNombreHostal(), h->getDireccionHostal(), h->getTelHostal());
         coleccionDTHostales.insert(pair<string, DTHostal>(h->getNombreHostal(), dth));
     }
     return coleccionDTHostales;

@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-hostal::hostal(string nombre, string tel, string dir)
+hostal::hostal(string nombre, string dir, string tel)
 {
     this->nombre = nombre;
     this->telefono = tel;
@@ -41,7 +41,7 @@ colHabitaciones *hostal::getHabitaciones()
 
 DTHostal hostal::getDTHostal()
 {
-    return DTHostal(getNombreHostal(), getTelHostal(), getDireccionHostal());
+    return DTHostal(getNombreHostal(), getDireccionHostal(), getTelHostal());
 }
 
 void hostal::agregarHabitacion(habitacion *hab)
@@ -97,18 +97,6 @@ void hostal::agregarAColResenias(resenia *res)
 {
     getColResenias()->insert(pair<int, resenia *>(res->getNumero(), res));
 }
-
-// void hostal::printHostal()
-// {
-//     cout << this->nombre << endl;
-//     cout << this->telefono << endl;
-//     cout << this->direccion << endl;
-//     cout << this->habitaciones << endl;
-// }
-
-// colResenias *hostal::getResenias()
-// {
-// }
 
 map<int, string> hostal::darComentariosSinResp()
 {
