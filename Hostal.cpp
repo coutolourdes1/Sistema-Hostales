@@ -113,10 +113,10 @@ void hostal::agregarAColResenias(resenia *res)
 map<int, string> hostal::darComentariosSinResp()
 {
     // Traigo la instancia
-    controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
+    // controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
 
     // Traigo la coleccion de resenias y creo un iterador
-    colResenias *coleccionResenias = controladorColecciones->getColResenias();
+    colResenias *coleccionResenias = getColResenias();
     colResenias::iterator iterResenias;
 
     // Creo un map que tendra comentarios
@@ -125,7 +125,7 @@ map<int, string> hostal::darComentariosSinResp()
     // Recorro la coleccion de resenias y si no tiene respuesta los agrego al map anterior
     for (iterResenias = coleccionResenias->begin(); iterResenias != coleccionResenias->end(); iterResenias++)
     {
-        if (iterResenias->second->tieneRespuesta()) // Condicion = No existe link entre resenia y respuesta
+        if (!(iterResenias->second->tieneRespuesta())) // Condicion = No existe link entre resenia y respuesta
         {
             reseniasSinComen.insert(pair<int, string>(iterResenias->second->getNumero(), iterResenias->second->getComentario()));
         }

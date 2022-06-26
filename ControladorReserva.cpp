@@ -138,17 +138,21 @@ void controladorReserva::seleccionarNumeroReserva(int numReserva){
 
 void controladorReserva::confirmarBajaReserva(){
     reservaSeleccionada->eliminarHuespedes();
+
     int codigoReserva = reservaSeleccionada->getCodigo(); 
     reservaSeleccionada->getHabitacion()->eliminarReservaDeHabitacion(codigoReserva);
+
     
     colEstadias estadiasReserva = reservaSeleccionada->getColEstadias();
     colEstadias::iterator iterEstadia;
+
 
     for(iterEstadia = estadiasReserva.begin(); iterEstadia != estadiasReserva.end(); iterEstadia++){
         estadia* est = iterEstadia->second;
         est->eliminarEstadia();
         delete est;
     }
+
     
     liberarMemoriaBajaReserva();
 }

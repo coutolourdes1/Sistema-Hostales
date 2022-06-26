@@ -36,6 +36,7 @@ void controladorResenia::agregarResenia(int calificacion, string comentario, DTF
         nuevoNumero = iterResenia->second->getNumero() + 1;
     }
 
+    cout <<  "El nuevo numero de la resenia es: " << nuevoNumero << endl;
     resenia *res = new resenia(nuevoNumero, calificacion, comentario, fecha, est, hostalSeleccionado);
     est->setResenia(res);
     hostalSeleccionado->agregarAColResenias(res);

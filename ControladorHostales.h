@@ -131,7 +131,7 @@ public:
     // TERMINA REGISTRAR ESTADIA
 
     // CASO DE USO: TOP 3 HOSTALES
-    set<string> solicitarTopTresHostales();
+    mapTopTres solicitarTopTresHostales();
     map<int, DTResenia> detallesHostal(string nombre);
     // TERMINA TOP 3 HOSTALES
 

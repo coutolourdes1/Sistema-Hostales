@@ -20,7 +20,6 @@ class habitacion{
         float precio;
 
         colReservas reservasHabitacion;
-        colReservas* reservas;
         hostal* hostalDeHabitacion;
     public:
         habitacion(int, float, int, hostal*);

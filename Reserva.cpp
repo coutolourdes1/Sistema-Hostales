@@ -73,7 +73,7 @@ colDTEstadias reserva::getColDTEstadias(){
 
     for (itEst = est.begin(); itEst != est.end(); itEst++){
         estadia *e = itEst->second;
-        DTEstadia dte = DTEstadia(e->getDTHuespedEstadia(), e->getCheckin(), e->getCheckOut(), e->getNumeroEstadia());
+        DTEstadia dte = e->getDTEstadia();
         DTEstadiasReservas.insert(pair<int, DTEstadia>(e->getNumeroEstadia(), dte));
     }
     return DTEstadiasReservas;

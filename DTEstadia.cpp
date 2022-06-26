@@ -12,12 +12,13 @@ DTEstadia::DTEstadia()
 {
 }
 
-DTEstadia::DTEstadia(DTHuesped huesp, DTFecha checkin, DTFecha checkout, int num)
+DTEstadia::DTEstadia(DTHuesped huesp, DTFecha checkin, DTFecha checkout, int num, bool finalizada)
 {
     this->huesped = huesp;
     this->CheckIn = checkin;
     this->CheckOut = checkout;
     this->numeroEstadia = num;
+    this->finalizada = finalizada;
 }
 
 DTHuesped DTEstadia::getHuesped() const
@@ -40,12 +41,22 @@ int DTEstadia::getNumero() const
     return this->numeroEstadia;
 }
 
+bool DTEstadia::getFinalizada() const
+{
+    return this->finalizada;
+}
+
 ostream &operator<<(ostream &out, const DTEstadia &estadia)
 {
     out << "Numero: " << estadia.getNumero() << endl;
     out << "Huesped: " << estadia.getHuesped() << endl;
     out << "CheckIn: " << estadia.getCheckIn() << endl;
-    out << "CheckOut: " << estadia.getCheckOut();
+
+    if(estadia.getFinalizada()){
+        out << "CheckOut: " << estadia.getCheckOut();
+    } else {
+        out << "Estadia aún sin finalizar";
+    }
 
     return out;
 }

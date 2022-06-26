@@ -49,6 +49,8 @@ respuesta* resenia::getRespuesta(){
 
 void resenia::deleteResenia(){
     hostalDeLaResenia->eliminarResenia(getNumero());
-    resp->eliminarRespuesta();
-    delete resp;
+    if(resp != NULL){
+        resp->eliminarRespuesta();
+        delete resp;
+    }
 }
