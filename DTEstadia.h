@@ -16,14 +16,16 @@ private:
     DTFecha CheckIn;
     DTFecha CheckOut;
     int numeroEstadia;
+    bool finalizada;
 
 public:
     DTEstadia();
-    DTEstadia(DTHuesped, DTFecha, DTFecha, int);
+    DTEstadia(DTHuesped, DTFecha, DTFecha, int, bool);
     DTHuesped getHuesped() const;
     DTFecha getCheckIn() const;
     DTFecha getCheckOut() const;
     int getNumero() const;
+    bool getFinalizada() const;
     // string getPromo();
     // Resenia getResenia();
     // Reserva getReserva();

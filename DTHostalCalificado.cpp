@@ -1,6 +1,8 @@
 #include "DTHostalCalificado.h"
 #include "ControladorColecciones.h"
 
+DTHostalCalificado::DTHostalCalificado(){}
+
 DTHostalCalificado::DTHostalCalificado(string nombre, string direccion, float promedioCalificaciones){
     this->nombre = nombre;
     this->direccion = direccion;

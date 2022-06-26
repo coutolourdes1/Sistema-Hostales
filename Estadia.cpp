@@ -14,6 +14,8 @@ estadia::estadia(huesped *huesp, reserva *res, DTFecha checkIn)
     this->res = res;
     this->checkIn = checkIn;
     this->checkOut = DTFecha();
+    this->finalizada = false;
+    this->reseniaDeEstadia = NULL;
 
     numeroEstadia = controladorEstadia::getInstancia()->getNuevoNumero();
 
@@ -22,7 +24,7 @@ estadia::estadia(huesped *huesp, reserva *res, DTFecha checkIn)
 
 DTEstadia estadia::getDTEstadia()
 {
-    return DTEstadia(huesp->getDTHuesped(), checkIn, checkOut, numeroEstadia);
+    return DTEstadia(huesp->getDTHuesped(), checkIn, checkOut, numeroEstadia, finalizada);
 }
 
 int estadia::getNumeroEstadia()
@@ -78,8 +80,12 @@ void estadia::setResenia(resenia *reseni)
 
 void estadia::eliminarEstadia(){
     huesp->borrarEstadia(getNumeroEstadia());
-    reseniaDeEstadia->deleteResenia();
-    delete reseniaDeEstadia;
+
+    if(reseniaDeEstadia != NULL){
+        cout << "El numero de la resenia a borrar es: " << reseniaDeEstadia->getNumero() << endl;
+        reseniaDeEstadia->deleteResenia();
+        delete reseniaDeEstadia;
+    }
 }
 
 huesped* estadia::getHuespedEstadia(){

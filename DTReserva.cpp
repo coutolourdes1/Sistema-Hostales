@@ -5,6 +5,8 @@
 #include <iostream>
 using namespace std;
 
+DTReserva::DTReserva(){}
+
 DTReserva::DTReserva(int cod, DTFecha checkin, DTFecha checkout, DTHuesped huesp, DTHabitacion hab){
     this->codigo = cod;
     this->checkin = checkin;

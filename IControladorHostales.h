@@ -42,6 +42,7 @@ typedef map<string, DTHostalCalificado> mapColHostalesCal;
 typedef map<string, DTEmpleado> mapColEmpleados;
 typedef map<int,DTEstadia> mapDTEstadia;
 typedef map<string, DTHuesped> mapDTHuespedes;
+typedef map<int, string> mapTopTres;
 
 
 class IControladorHostales {
@@ -98,7 +99,7 @@ class IControladorHostales {
     virtual void cancelarEstadia() = 0;
     virtual void liberarMemoriaEstadia() = 0;
     
-    virtual set<string> solicitarTopTresHostales() = 0;
+    virtual mapTopTres solicitarTopTresHostales() = 0;
     virtual map<int, DTResenia> detallesHostal(string) = 0;
 
     virtual mapColEmpleados obtenerListaDeEmpleados() = 0;

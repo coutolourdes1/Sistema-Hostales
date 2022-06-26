@@ -7,16 +7,16 @@ using namespace std;
 
 typedef map<int, DTResenia> colDTResenias;
 
-DTInformacionHostal::DTInformacionHostal(DTHostal DTh, colDTResenias colDTResenias, float promCal)
+DTInformacionHostal::DTInformacionHostal(DTHostalCalificado DTh, colDTResenias colDTResenias, float promCal)
 {
-    this->hostal = DTh;
+    this->hostalCalificado = DTh;
     this->resenias = colDTResenias;
     this->promedioCalificaciones = promCal;
 }
 
 string DTInformacionHostal::getNombreHostal() const
 {
-    return hostal.getNombre();
+    return hostalCalificado.getNombre();
 }
 
 float DTInformacionHostal::getPromedioCalificaciones() const
@@ -29,24 +29,29 @@ colDTResenias DTInformacionHostal::getDTColResenias() const
     return resenias;
 }
 
+DTHostalCalificado DTInformacionHostal::getDTHostalCalificado() const
+{
+    return hostalCalificado;
+}
+
 ostream &operator<<(ostream &out, const DTInformacionHostal &infoHostal)
 {
     colDTResenias::iterator iterResenia;
 
-    out << "Hostal: " << infoHostal.getNombreHostal() << endl;
-    out << "Promedio: " << infoHostal.getPromedioCalificaciones() << endl;
+    out << "Información del Hostal: " << endl;
+    out << infoHostal.getDTHostalCalificado() << endl;
 
-    out << "Resenias: " << endl;
+    if(infoHostal.getPromedioCalificaciones() != -1){
+        out << "Resenias: " << endl;
 
-    colDTResenias cdt = infoHostal.getDTColResenias();
+        colDTResenias cdt = infoHostal.getDTColResenias();
 
-    for (iterResenia = cdt.begin(); iterResenia != cdt.end(); ++iterResenia)
-    {
-        out << "Numero: " << iterResenia->second.getNumero() << endl;
-        out << "Calificacion: " << iterResenia->second.getCalificacion() << endl;
-        out << "Comentario: " << iterResenia->second.getComentario() << endl;
-        out << "Numero Habitacion: " << iterResenia->second.getNumeroHabitacion() << endl;
-        out << "Fecha: " << iterResenia->second.getFecha() << endl;
+        for (iterResenia = cdt.begin(); iterResenia != cdt.end(); ++iterResenia)
+        {
+            out << iterResenia->second << endl;
+        }
+    } else  {
+        out << "El hostal no tiene resenias";
     }
 
     return out;

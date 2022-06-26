@@ -3,6 +3,7 @@
 #include "DTHostal.h"
 #include "DTResenia.h"
 #include "DTHabitacion.h"
+#include "DTHostalCalificado.h"
 #include <string>
 #include <map>
 #include <iostream>
@@ -14,7 +15,7 @@ typedef map<int, DTResenia> colDTResenias;
 class DTInformacionHostal
 {
 private:
-    DTHostal hostal;
+    DTHostalCalificado hostalCalificado;
     colDTResenias resenias;
     float promedioCalificaciones;
 
@@ -23,8 +24,9 @@ private:
     // DTHostal* hostales;
     // DTResenaAmpliada* resenaAmpliada;
 public:
-    DTInformacionHostal(DTHostal, colDTResenias, float);
+    DTInformacionHostal(DTHostalCalificado, colDTResenias, float);
     string getNombreHostal() const;
+    DTHostalCalificado getDTHostalCalificado() const; 
     float getPromedioCalificaciones() const;
 
     colDTResenias getDTColResenias() const;

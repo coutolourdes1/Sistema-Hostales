@@ -139,7 +139,7 @@ DTInformacionHostal controladorHostales::obtenerInformacionHostal(string nombreH
 
     if(iterHostal != coleccionHostales->end()){
         hostal* h = iterHostal->second;
-        return DTInformacionHostal(h->getDTHostal(), h->getDTResenias(), h->getDTHostalCalificado().getPromedioCalificaciones());
+        return DTInformacionHostal(h->getDTHostalCalificado(), h->getDTResenias(), h->getDTHostalCalificado().getPromedioCalificaciones());
     } else {
         throw std::invalid_argument("El nombre del hostal seleccionado no es correcto");
     }
@@ -492,21 +492,27 @@ void controladorHostales::confirmarEstadia()
     // Crear la instancia estadia
     estadia *nuevaEstadia = new estadia(huesp, reservaSeleccionada,checkinEstadia);
 
-    // Agregar a la coleccion de estadias de la reserva
-    reservaSeleccionada->agregarEstadia(nuevaEstadia);
+    //Links HACIA la estadia:
+        // Agregar a la coleccion de estadias de la reserva
+        reservaSeleccionada->agregarEstadia(nuevaEstadia);
+        reservaSeleccionada->setEstadoReserva(cerrada);
 
-    // Agregar estadia al huesped
-    huesp->agregarEstadia(nuevaEstadia);
+        // Agregar estadia al huesped
+        huesp->agregarEstadia(nuevaEstadia);
 
-    // Crear un link de estadia al huesped
-    nuevaEstadia->setHuesped(huespedSeleccionado);
+        //  Agregamos la estadia a la coleccion de estadias
+        controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
+        controladorColecciones->getColEstadias()->insert(pair<int, estadia *>(nuevaEstadia->getNumeroEstadia(), nuevaEstadia));
+    //
 
-    // Crear un link de estadia a la reserva
-    nuevaEstadia->setReserva(reservaSeleccionada);
-    reservaSeleccionada->setEstadoReserva(cerrada);
-    //  Agregamos la estadia a la coleccion de estadias
-    controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
-    controladorColecciones->getColEstadias()->insert(pair<int, estadia *>(nuevaEstadia->getNumeroEstadia(), nuevaEstadia));
+    //Links DESDE la estadia:
+        // Crear un link de estadia al huesped
+        nuevaEstadia->setHuesped(huespedSeleccionado);
+
+        // Crear un link desde la estadia a la reserva
+        nuevaEstadia->setReserva(reservaSeleccionada);
+    //
+
     liberarMemoriaEstadia();
 }
 
@@ -522,14 +528,14 @@ void controladorHostales::liberarMemoriaEstadia(){
 
 
 // CASO DE USO: SOLICITAR TOP 3 HOSTALES
-set<string> controladorHostales::solicitarTopTresHostales()
+mapTopTres controladorHostales::solicitarTopTresHostales()
 {
     controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
     colHostales *coleccionHostales = controladorColecciones->getColHostales();
     colHostales::iterator iterHost;
 
     // Conjunto de top tres hostales a retornar
-    set<string> topTresHostales;
+    mapTopTres topTresHostales;
 
     // Map que tendrá (nombre, promedioCalificacion) de todos los hostales
     map<string, float> promediosHostales;
@@ -562,7 +568,7 @@ set<string> controladorHostales::solicitarTopTresHostales()
         }
 
         promediosHostales.erase(h1);
-        topTresHostales.insert(h1);
+        topTresHostales.insert(pair<int, string> (aux + 1, h1));
         mayor = -1;
         aux++;
     }
@@ -653,7 +659,7 @@ void controladorHostales::setCheckoutEstadia(DTFecha checkout){
 }
 //MUESTRA TODAS LAS ESTADIAS -ABIERTAS- DE ESE HUESPED EN EL HOSTAL QUE SELECCIONO
 mapDTEstadia controladorHostales::mostrarEstadiasHuesped(string email){
-    hostal* hos = controladorHostales::getHostalSeleccionado();
+    hostal* hos = getHostalSeleccionado();
     string nombreHostal = hos->getNombreHostal();
     controladorColecciones* controladorColecciones = controladorColecciones::getInstancia();
     colHuespedes *coleccionHuespedes = controladorColecciones->getColHuespedes();
@@ -661,27 +667,39 @@ mapDTEstadia controladorHostales::mostrarEstadiasHuesped(string email){
 
     iterHues = coleccionHuespedes->find(email);
     huesped* hues = iterHues->second;
-    colReservas reservasDelHuesped = hues->getColReservasQuePertenece();
-    colReservas::iterator iterRes;
+    colEstadias estadiasDelHuesped = hues->getColEstadias();
+    colEstadias::iterator iterEst;
 
     mapDTEstadia mapEstadias;
-    DTEstadia estadias_huesped;
-    for (iterRes = reservasDelHuesped.begin(); iterRes != reservasDelHuesped.end(); iterRes++){
-        reserva* res = iterRes->second;
-        habitacion* hab = res->getHabitacion();
-        if(hab->getHostalDeHabitacion()->getNombreHostal() == hos->getNombreHostal()){
-            if(res->getEstadoReserva() == abierta){
-                colEstadias colEst = res->getColEstadias();
-                colEstadias::iterator iterEst;
-                for (iterEst = colEst.begin(); iterEst != colEst.end(); iterEst++){
-                    estadia* est = iterEst->second;
-                    estadias_huesped = DTEstadia(hues->getDTHuesped(), est->getCheckin(), est->getCheckOut(), est->getNumeroEstadia());
-                    mapEstadias.insert(pair<int,DTEstadia>(est->getNumeroEstadia(), estadias_huesped));
-                }
-            }
+
+    for(iterEst = estadiasDelHuesped.begin(); iterEst != estadiasDelHuesped.end(); iterEst++){
+        estadia* estActual = iterEst->second;
+        if(!(estActual->getFinalizada())){
+            mapEstadias.insert(pair<int, DTEstadia> (estActual->getNumeroEstadia(), estActual->getDTEstadia()));
         }
     }
     return mapEstadias;
+
+    // colReservas reservasDelHuesped = hues->getColReservasQuePertenece();
+    // colReservas::iterator iterRes;
+
+    // mapDTEstadia mapEstadias;
+    // DTEstadia estadias_huesped;
+    // for (iterRes = reservasDelHuesped.begin(); iterRes != reservasDelHuesped.end(); iterRes++){
+    //     reserva* res = iterRes->second;
+    //     habitacion* hab = res->getHabitacion();
+    //     if(hab->getHostalDeHabitacion()->getNombreHostal() == hos->getNombreHostal()){
+    //         if(res->getEstadoReserva() == abierta){
+    //             colEstadias colEst = res->getColEstadias();
+    //             colEstadias::iterator iterEst;
+    //             for (iterEst = colEst.begin(); iterEst != colEst.end(); iterEst++){
+    //                 estadia* est = iterEst->second;
+    //                 estadias_huesped = DTEstadia(hues->getDTHuesped(), est->getCheckin(), est->getCheckOut(), est->getNumeroEstadia());
+    //                 mapEstadias.insert(pair<int,DTEstadia>(est->getNumeroEstadia(), estadias_huesped));
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 
@@ -696,6 +714,7 @@ void controladorHostales::setEstadiaSeleccionada(int codigoEstadia){
 void controladorHostales::finalizarEstadia(){
     estadia* estAfinalizar = estadiaSeleccionada;
     estAfinalizar->setCheckout(checkoutEstadia);
+    estAfinalizar->setFinalizada();
 }
 
 

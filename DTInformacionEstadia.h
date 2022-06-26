@@ -11,19 +11,22 @@ using namespace std;
 #include "DTResenia.h"
 #include "DTEstadia.h"
 #include "DTHabitacion.h"
+#include "DTReserva.h"
 
 
 class DTInformacionEstadia{
     private: 
         DTHostal h;
         DTEstadia dte;
-        int cod_reserva;
+        DTReserva dtr;
+        int codEst;
     public:
         DTInformacionEstadia();
-        DTInformacionEstadia(DTHostal, DTEstadia, int);
-        int getCodReserva() const;
+        DTInformacionEstadia(DTHostal, DTEstadia, DTReserva);
+        int getCodEst() const;
         DTHostal getDTHostalEstadia() const;
         DTEstadia getDTEstadia() const;
+        DTReserva getDTReserva() const;
 }; 
 
 ostream &operator<<(ostream &out, const DTInformacionEstadia &infoEst);

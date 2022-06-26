@@ -19,6 +19,7 @@ class DTReserva{
         DTHuesped huesped;
         DTHabitacion habitacion;
     public:
+        DTReserva();
         DTReserva(int, DTFecha, DTFecha, DTHuesped, DTHabitacion);
         int getCodigo() const;
         DTFecha getCheckin() const;

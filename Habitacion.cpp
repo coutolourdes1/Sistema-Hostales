@@ -10,7 +10,8 @@ habitacion::habitacion(int numero, float precio, int capacidad, hostal* hostalDe
     this->capacidad = capacidad;
     this->hostalDeHabitacion = hostalDeHabitacion;
 
-    this->reservas = new colReservas();
+    colReservas colReservasVacio;
+    this->reservasHabitacion = colReservasVacio;
 }
 
 int habitacion::getNumero(){
@@ -34,14 +35,14 @@ DTHabitacion habitacion::getDTHabitacion(){
 }
 
 void habitacion::agregarReservaACol(reserva* res){
-    reservas->insert(pair<int, reserva*>(res->getCodigo(), res));
+    reservasHabitacion.insert(pair<int, reserva*>(res->getCodigo(), res));
 }
 
 bool habitacion::estaHabDisponible(DTFecha inicio, DTFecha fin){
-    colReservas::iterator iterRes = reservas->begin();
+    colReservas::iterator iterRes = reservasHabitacion.begin();
     bool reservaSolapa = false;
 
-    while((iterRes != reservas->end()) && (!reservaSolapa)) {
+    while((iterRes != reservasHabitacion.end()) && (!reservaSolapa)) {
         reservaSolapa = (reservaSolapa || iterRes->second->solapa(inicio, fin));
         iterRes++;
     }

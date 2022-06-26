@@ -69,6 +69,7 @@ mapColEstadias controladorEstadia::listarEstadiasFinalizadasHuesped(string email
     if (iterHuesped != coleccionHuespedes->end())
     {
         huesped *huespedSeleccionado = iterHuesped->second;
+        setHuespedSeleccionado(huespedSeleccionado);
         colEstadias estadiasDelHuesped = huespedSeleccionado->getColEstadias();
         colEstadias::iterator iterEstadia;
 
@@ -101,6 +102,10 @@ estadia *controladorEstadia::getEstadiaSeleccionada()
     return estadiaSeleccionada;
 }
 
+void controladorEstadia::setHuespedSeleccionado(huesped * huesp){
+    this->huespedSeleccionado = huesp;
+}
+
 void controladorEstadia::seleccionarEstadia(int numEstadia)
 {
     colEstadias estadiasDeHuesped = huespedSeleccionado->getColEstadias();
@@ -108,6 +113,18 @@ void controladorEstadia::seleccionarEstadia(int numEstadia)
 
     if(iterEstadia != estadiasDeHuesped.end()){
         estadiaSeleccionada = iterEstadia->second;
+    } else {
+        throw std::invalid_argument("La estadia seleccionado no es correcta");
+    }
+}
+
+void controladorEstadia::setEstadiaBuscada(int numEst){
+    controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
+    colEstadias* coleccionEstadias = controladorColecciones->getColEstadias();
+    colEstadias::iterator iterEst = coleccionEstadias->find(numEst);
+
+    if(iterEst != coleccionEstadias->end()){
+        estadiaSeleccionada = iterEst->second;
     } else {
         throw std::invalid_argument("La estadia seleccionado no es correcta");
     }
@@ -159,21 +176,20 @@ mapColEstadias controladorEstadia::listarEstadias(){
     return coleccionesEstadias;
 }
 
-mapColInfoEstadia controladorEstadia::informacionEstadia(){
+DTInformacionEstadia controladorEstadia::informacionEstadia(){
 
-    mapColInfoEstadia infoEstadia;
+    // mapColInfoEstadia infoEstadia;
     controladorHostales* controladorHostal = controladorHostales::getInstancia();
     hostal* hostal_seleccionado = controladorHostal->getHostalSeleccionado();
 
     DTHostal dth = hostal_seleccionado->getDTHostal();
     DTEstadia dte = estadiaSeleccionada->getDTEstadia();
-    reserva* res = estadiaSeleccionada->getReserva();
-    int cod = res->getCodigo();
+    DTReserva dtr = estadiaSeleccionada->getReserva()->getDTReserva();
 
-    DTInformacionEstadia info = DTInformacionEstadia(dth, dte, cod);
-    infoEstadia.insert(pair<int, DTInformacionEstadia>(cod,info));
+    return DTInformacionEstadia(dth, dte, dtr);
+    // infoEstadia.insert(pair<int, DTInformacionEstadia>(codEst,info));
     
-    return infoEstadia;
+    // return infoEstadia;
 
 }
 

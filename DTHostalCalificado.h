@@ -16,6 +16,7 @@ class DTHostalCalificado{
         string nombre, direccion;
         float promedioCalificaciones;
     public: 
+        DTHostalCalificado();
         DTHostalCalificado(string, string, float);
         string getNombre() const;
         string getDireccion() const;
