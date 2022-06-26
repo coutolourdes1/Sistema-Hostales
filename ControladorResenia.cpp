@@ -1,6 +1,7 @@
 #include "ControladorResenia.h"
 #include "IObserver.h"
 #include "DTInformacionNotificaciones.h"  
+#include "DTEmpleado.h"
 
 #include <string>
 #include <iterator>
@@ -65,3 +66,16 @@ void controladorResenia::eliminarObservador(IObserver *obs){
    observadores.erase(obs);
 }
 
+
+ map<string,DTEmpleado> controladorResenia::getEmpleadosObservadores(){
+    map<string,DTEmpleado> dtempleadosSuscriptos;
+    set<IObserver*>::iterator iterObs;
+    
+    for(iterObs = observadores.begin(); iterObs != observadores.end(); ++iterObs){
+        empleado* emp = dynamic_cast<empleado*>(*iterObs);
+        if (emp!= NULL){
+            dtempleadosSuscriptos.insert(pair<string,DTEmpleado>(emp->getEmail(),emp->getDTEmpleado()));
+        }
+    };
+    return dtempleadosSuscriptos;
+}

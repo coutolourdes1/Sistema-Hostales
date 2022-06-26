@@ -94,6 +94,7 @@ public:
     empleado();
     empleado(string, string, string, string);
     string getCargo();
+    string getEmailEmpleado();
     // hostal *getHostalQueTrabaja();
     colHostales getHostalesQueTrabaja();
     mapColHostales getDTHostalesQueTrabaja();
