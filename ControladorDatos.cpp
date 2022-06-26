@@ -22,38 +22,38 @@ void controladorDatos::AgregarHuesped(){
 
     controladorUsuario *controladorUsuario = controladorUsuario::getInstancia();
 
-    controladorUsuario->setEmailUsuario("Sofia");
-    controladorUsuario->setNombreUsuario("sofia@mail.com");
+    controladorUsuario->setEmailUsuario("sofia@mail.com");
+    controladorUsuario->setNombreUsuario("Sofia");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(true);
     controladorUsuario->confirmarAltaHuesped();
 
-    controladorUsuario->setEmailUsuario("Frodo");
-    controladorUsuario->setNombreUsuario("frodo@mail.com");
+    controladorUsuario->setEmailUsuario("frodo@mail.com");
+    controladorUsuario->setNombreUsuario("Frodo");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(true);
     controladorUsuario->confirmarAltaHuesped();
 
-    controladorUsuario->setEmailUsuario("Sam");
-    controladorUsuario->setNombreUsuario("sam@mail.com");
+    controladorUsuario->setEmailUsuario("sam@mail.com");
+    controladorUsuario->setNombreUsuario("Sam");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(false);
     controladorUsuario->confirmarAltaHuesped();
 
-    controladorUsuario->setEmailUsuario("Merry");
-    controladorUsuario->setNombreUsuario("merry@mail.com");
+    controladorUsuario->setEmailUsuario("merry@mail.com");
+    controladorUsuario->setNombreUsuario("Merry");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(false);
     controladorUsuario->confirmarAltaHuesped();
 
-    controladorUsuario->setEmailUsuario("Pippin");
-    controladorUsuario->setNombreUsuario("pipin@mail.com");
+    controladorUsuario->setEmailUsuario("pipin@mail.com");
+    controladorUsuario->setNombreUsuario("Pipin");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(false);
     controladorUsuario->confirmarAltaHuesped();
 
-    controladorUsuario->setEmailUsuario("Seba");
-    controladorUsuario->setNombreUsuario("seba@mail.com");
+    controladorUsuario->setEmailUsuario("seba@mail.com");
+    controladorUsuario->setNombreUsuario("Seba");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setEsFinger(true);
     controladorUsuario->confirmarAltaHuesped();
@@ -66,29 +66,29 @@ void controladorDatos::AgregarEmpleado(){
     controladorUsuario *controladorUsuario = controladorUsuario::getInstancia();
     
     //E1
-    controladorUsuario->setEmailUsuario("Emilia");
-    controladorUsuario->setNombreUsuario("emilia@mail.com");
+    controladorUsuario->setEmailUsuario("emilia@mail.com");
+    controladorUsuario->setNombreUsuario("Emilia");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setCargoEmpleado("Recepcion");
     controladorUsuario->confirmarAltaEmpleado();
 
     //E2
-    controladorUsuario->setEmailUsuario("Leonardo");
-    controladorUsuario->setNombreUsuario("leo@mail.com");
+    controladorUsuario->setEmailUsuario("leo@mail.com");
+    controladorUsuario->setNombreUsuario("Leo");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setCargoEmpleado("Recepcion");
     controladorUsuario->confirmarAltaEmpleado();
 
     //E3
-    controladorUsuario->setEmailUsuario("Alina");
-    controladorUsuario->setNombreUsuario("alina@mail.com");
+    controladorUsuario->setEmailUsuario("alina@mail.com");
+    controladorUsuario->setNombreUsuario("Alina");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setCargoEmpleado("Administracion");
     controladorUsuario->confirmarAltaEmpleado();
 
     //E4
-    controladorUsuario->setEmailUsuario("Barliman");
-    controladorUsuario->setNombreUsuario("barli@mail.com");
+    controladorUsuario->setEmailUsuario("barli@mail.com");
+    controladorUsuario->setNombreUsuario("Barlin");
     controladorUsuario->setContraseniaUsuario("123");
     controladorUsuario->setCargoEmpleado("Recepcion");
     controladorUsuario->confirmarAltaEmpleado();
