@@ -8,6 +8,9 @@
 #include "ControladorDatos.h"
 #include "Fabrica.h"
 
+#include <iostream>
+#include <string>
+
 int main()
 {
   fabrica *fabrica = fabrica::getInstancia();
@@ -53,7 +56,7 @@ int main()
       controladorDatos->AgregarEmpleado();
       controladorDatos->AgregarHostales();
       controladorDatos->AgregarHabitaciones();
-      //controladorDatos->AgregarEmpleadoAHostel(); 
+      controladorDatos->AgregarEmpleadoAHostel(); 
       
       break;
     } 
@@ -130,10 +133,12 @@ int main()
       string telefonoHostal;
       bool confirmar;
       cout << "Ingrese nombre del Hostal a registrar: \n";
-      cin >> nombreHostal;
+      cin.ignore();
+      getline (cin, nombreHostal);
       controladorHostales->setNombreHostal(nombreHostal);
       cout << "Ingrese la direccion del Hostal a registrar: \n";
-      cin >> direccionHostal;
+      cin.ignore();
+      getline (cin, direccionHostal);
       controladorHostales->setDireccionHostal(direccionHostal);
       cout << "Ingrese el telefono del Hostal a registrar: \n";
       cin >> telefonoHostal;
@@ -162,7 +167,8 @@ int main()
 
       string nombreHostal;
       cout << "Ingrese el nombre del hostal: ";
-      cin >> nombreHostal;
+      cin.ignore();
+      getline (cin, nombreHostal);
       controladorHostales->seleccionarHostal(nombreHostal);
 
       int numHab;
@@ -207,7 +213,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
 
       cout << "A continuacion listaremos los empleados que todavia no fueron asignados al Hostal seleccionado: \n";
@@ -251,7 +258,8 @@ int main()
       int dia, mes, anio;
 
       cout << "Ingrese nombre del hostal: ";
-      cin >> nombreHostal;
+      cin.ignore();
+      getline (cin, nombreHostal);
 
       cout << "Ingrese dia de checkIn: ";
       cin >> dia;
@@ -356,7 +364,8 @@ int main()
 
       string nombreHostal;
       cout << "Ingrese el nombre del hostal que desde consultar: ";
-      cin >> nombreHostal;
+      cin.ignore();
+      getline (cin, nombreHostal);
       map<int, DTResenia> reseniasHostal = controladorHostales->detallesHostal(nombreHostal);
       map<int, DTResenia>::iterator iterRes;
 
@@ -387,7 +396,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
       cout << "Ingrese su email del huesped para registrar su estadia: \n";
       string emailHuesped;
@@ -436,7 +446,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
       cout << "Ingrese su email del huesped para finalizar su estadia: \n";
       string emailHuesped;
@@ -480,7 +491,8 @@ int main()
       string hostalSeleccionado;
 
       cout << "Selecciona un Hostal: ";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorEstadia->seleccionarHostal(hostalSeleccionado);
 
       string emailHuesped;
@@ -509,7 +521,8 @@ int main()
         string res;
         float cal;
         cout << "Ingrese Resenia: ";
-        cin >> res;
+        cin.ignore();
+        getline (cin, res);
 
         cout << "Ingrese Calificacion: ";
         cin >> cal;
@@ -596,7 +609,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       DTInformacionHostal dtinfohos = controladorHostales->obtenerInformacionHostal(hostalSeleccionado);
       cout << dtinfohos;
 
@@ -613,7 +627,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
       colConsultaReserva colRes = controladorReserva->obtenerReservasdelHostal();
       colConsultaReserva::iterator itColRes;
@@ -636,7 +651,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione el hostal escribiendo su nombre: \n";
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
       mapColEstadias colEstadias = controladorEstadia->listarEstadias();
       mapColEstadias::iterator iterColEst;
@@ -661,7 +677,7 @@ int main()
       cout << dtres;
       break;
     }
-    case 15: // baja reserva
+    case 15: // baja reserva --- raro
     {
       cout << "A continuacion listaremos los hostales registrados en el sistema: \n";
       mapColDTHostales colDThos = controladorHostales->obtenerHostalesRegistrados();
@@ -743,7 +759,7 @@ int main()
       for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
       {
         DTEmpleado dte = colDTEmple->second;
-        cout << dte;
+        cout << dte << endl;
       }
       cout << "Seleccione un empleado a recibir notificaciones, ingresando su email: \n";
       string emailEmpleado;
