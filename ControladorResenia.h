@@ -25,6 +25,7 @@ public:
     void agregarResenia(int, string, DTFecha, estadia*, hostal*);    
     void agregarObservador(IObserver *obs);
     void eliminarObservador(IObserver *obs);
+     map<string,DTEmpleado> getEmpleadosObservadores();
 };
 
 #endif

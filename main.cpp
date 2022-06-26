@@ -19,7 +19,7 @@ int main()
   IControladorReserva *controladorReserva = fabrica->getControladorReserva();
   IControladorEstadia *controladorEstadia = fabrica->getControladorEstadia();
   IControladorUsuario *controladorUsuario = fabrica->getControladorUsuario();
-  //IControladorResenia *controladorResenia = fabrica->getControladorResenia();
+  IControladorResenia *controladorResenia = fabrica->getControladorResenia();
   IControladorEmpleado *controladorEmpleado = fabrica->getControladorEmpleado();
   //IControladorColecciones *controladorColecciones = fabrica->getControladorColecciones();
   controladorDatos *controladorDatos = fabrica->getControladorDatos();
@@ -736,13 +736,12 @@ int main()
     }
     case 17: // consulta not
     {
-      cout << "A listaremos todos los empleados registrados en el sistema: \n";
-      mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-      mapDTEmpleado::iterator colDTEmple;
-      for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
+      cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
+      map<string,DTEmpleado> colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      map<string,DTEmpleado>::iterator iterColDTEmpSuscriptos;
+      for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
       {
-        DTEmpleado dte = colDTEmple->second;
-        cout << dte;
+        cout << iterColDTEmpSuscriptos->second << endl;
       }
       string email_emp;
       cout << "Ingrese el email del empleado seleccionado: \n";
@@ -758,15 +757,14 @@ int main()
     }
     case 18: // eliminar sus
     {
-      cout << "A listaremos todos los empleados registrados en el sistema: \n";
-      mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-      mapDTEmpleado::iterator colDTEmple;
-      for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
+      cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
+      map<string,DTEmpleado> colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      map<string,DTEmpleado>::iterator iterColDTEmpSuscriptos;
+      for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
       {
-        DTEmpleado dte = colDTEmple->second;
-        cout << dte << endl;
+        cout << iterColDTEmpSuscriptos->second << endl;
       }
-      cout << "Seleccione un empleado a recibir notificaciones, ingresando su email: \n";
+      cout << "Seleccione un empleado a eliminar notificaciones, ingresando su email: \n";
       string emailEmpleado;
       cin >> emailEmpleado;
       controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
