@@ -35,14 +35,11 @@ private:
     string direccion;
     colHabitaciones *habitacionesDelHostal;
     empleadosDelHostal *empDelHostal;
-    // map<string, estadia*> *estadias; //se conecta con Estadia con *
-    // map<string, habitacion*> *habitacion; //se conecta con Estadia con *
     colResenias *resenias;
-    // colCargos = map<string, cargo*>* cargosDeEmpleados;
 
 public:
     hostal(string, string, string);
-    // colHabitaciones *getHabitaciones();
+
     DTHostal getDTHostal();
     string getNombreHostal();
     string getTelHostal();

@@ -57,6 +57,11 @@ int main()
       controladorDatos->AgregarHostales();
       controladorDatos->AgregarHabitaciones();
       controladorDatos->AgregarEmpleadoAHostel(); 
+      controladorDatos->AgregarReservas(); 
+      controladorDatos->AgregarEstadias(); 
+      controladorDatos->AgregarFinalizarEstadia(); 
+      //controladorDatos->AgregarCalificacionesEstadia();
+      //controladorDatos->AgregarComentarCalificacion();
       
       break;
     } 
@@ -342,7 +347,7 @@ int main()
       if (confirmar == 1)
       {
         controladorHostales->confirmarReserva();
-        cout << "Su reserva ha sido agregada con éxito.";
+        cout << "Su reserva ha sido agregada con éxito. \n";
       }
       else
       {
@@ -409,7 +414,7 @@ int main()
         DTReserva dtres = itColDTRes->second;
         cout << dtres;
       }
-      cout << "Seleccione una reserva para registrar su estadia: \n";
+      cout << "Seleccione la reserva ingresando su codigo, para registrar su estadía: \n";
       int numeroReserva;
       cin >> numeroReserva;
       controladorHostales->seleccionarReserva(numeroReserva);
@@ -454,10 +459,11 @@ int main()
       cin >> emailHuesped;
       mapDTEstadia mapEst = controladorHostales->mostrarEstadiasHuesped(emailHuesped);
       mapDTEstadia::iterator itMapEst;
+      cout << "Ahora mostraremos las estadias activas de el huesped ingresado: \n";
       for (itMapEst = mapEst.begin(); itMapEst != mapEst.end(); itMapEst++)
       {
         DTEstadia dtest = itMapEst->second;
-        cout << dtest;
+        cout << dtest <<endl;
       }
       cout << "Seleccione la estadia ingresando su codigo: \n";
       int codigoEstadia;
@@ -565,7 +571,8 @@ int main()
       cout << "Ingrese Numero de Comentario a Responder: " << endl;
       cin >> numeroDeComentario;
       cout << "Ingrese la Respuesta: " << endl;
-      cin >> respuesta;
+      cin.ignore();
+      getline (cin, respuesta);
 
       controladorEmpleado->responderResenia(numeroDeComentario, respuesta);
       cout << "Se ha guardado la respuesta";
@@ -612,7 +619,7 @@ int main()
       cin.ignore();
       getline (cin, hostalSeleccionado);
       DTInformacionHostal dtinfohos = controladorHostales->obtenerInformacionHostal(hostalSeleccionado);
-      cout << dtinfohos;
+      cout << dtinfohos << endl;
 
       break;
     }
