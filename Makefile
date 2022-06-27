@@ -1,4 +1,4 @@
-MODULOS = Fabrica Usuario Hostal Resenia Habitacion Reserva Estadia Respuesta DTHostal DTHostalCalificado DTUsuario DTEmpleado DTHuesped DTResenia DTReserva DTFecha DTHabitacion ControladorColecciones ControladorUsuario ControladorHostales ControladorReserva ControladorResenia ControladorEstadia ControladorEmpleados DTInformacionReserva DTInformacionHostal DTInformacionEstadia DTEstadia DTInformacionNotificaciones
+MODULOS = Fabrica Usuario ControladorDatos Hostal Resenia Habitacion Reserva Estadia Respuesta DTHostal DTHostalCalificado DTUsuario DTEmpleado DTHuesped DTResenia DTReserva DTFecha DTHabitacion ControladorColecciones ControladorUsuario ControladorHostales ControladorReserva ControladorResenia ControladorEstadia ControladorEmpleados DTInformacionReserva DTInformacionHostal DTInformacionEstadia DTEstadia DTInformacionNotificaciones
 
 CC = g++
 LD = -g -Wall
@@ -13,6 +13,9 @@ main: $(OBJ) main.cpp
 
 ./Fabrica.o: ./Fabrica.h ./Fabrica.cpp
 	$(CC) $(LD) $(MC) ./Fabrica.cpp -o ./Fabrica.o
+
+./ControladorDatos.o: ./ControladorDatos.h ./ControladorDatos.cpp
+	$(CC) $(LD) $(MC) ./ControladorDatos.cpp -o ./ControladorDatos.o
 
 ./Usuario.o: ./Usuario.h ./Usuario.cpp
 	$(CC) $(LD) $(MC) ./Usuario.cpp -o ./Usuario.o

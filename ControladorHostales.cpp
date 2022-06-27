@@ -451,6 +451,8 @@ void controladorHostales::liberarMemoriaReserva()
 
 mapColDTReservas controladorHostales::solicitarReservasDisp(string email)
 {
+    string nombreHostal = getHostalSeleccionado()->getNombreHostal();
+
     controladorColecciones *controladorColecciones = controladorColecciones::getInstancia();
     huesped *huespedSeleccionado = controladorColecciones->getColHuespedes()->find(email)->second;
 
@@ -462,7 +464,9 @@ mapColDTReservas controladorHostales::solicitarReservasDisp(string email)
     for (iterRes = reservasDelHuesped.begin(); iterRes != reservasDelHuesped.end(); iterRes++)
     {
         reserva *res = iterRes->second;
-        DTReservasDelHuesped.insert(pair<int, DTReserva>(res->getCodigo(), res->getDTReserva()));
+        if (nombreHostal == res->getHabitacion()->getHostalDeHabitacion()->getNombreHostal()){
+            DTReservasDelHuesped.insert(pair<int, DTReserva>(res->getCodigo(), res->getDTReserva()));
+        }
     }
 
     setHuespedSeleccionado(huespedSeleccionado);

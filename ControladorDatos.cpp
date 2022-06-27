@@ -236,7 +236,7 @@ void controladorDatos::AgregarReservas(){
     DTFecha c_out4 = DTFecha(30, 06, 2022);
     bool esgrupal4 = false;    
     controladorHostales->setFechas(c_in1, c_out1);
-    mapColHabitaciones aux4 = controladorHostales->habitacionesDispDeHostal(hostal4, c_in3, c_out3, esgrupal4);
+    mapColHabitaciones aux4 = controladorHostales->habitacionesDispDeHostal(hostal4, c_in4, c_out4, esgrupal4);
     controladorHostales->seleccionarHabitacion(1);
     controladorHostales->seleccionarHuesped("seba@mail.com");
     controladorHostales->confirmarReserva(c_in4);
@@ -300,7 +300,7 @@ void controladorDatos::AgregarEstadias(){
 void controladorDatos::AgregarFinalizarEstadia(){
 
     controladorHostales *controladorHostales = controladorHostales::getInstancia();
-    controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
+    //controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
 
     //Estadia 1
     controladorHostales->seleccionarHostal("La posada del finger");
@@ -332,7 +332,7 @@ void controladorDatos::AgregarFinalizarEstadia(){
 
 void controladorDatos::AgregarCalificacionesEstadia(){
 
-    controladorHostales *controladorHostales = controladorHostales::getInstancia();
+    //controladorHostales *controladorHostales = controladorHostales::getInstancia();
     controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
  
     controladorEstadia->seleccionarHostal("La posada del finger");

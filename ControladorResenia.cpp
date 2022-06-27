@@ -62,11 +62,11 @@ void controladorResenia::agregarObservador(IObserver *obs){
 }
 
 void controladorResenia::eliminarObservador(IObserver *obs){
-   observadores.erase(obs);
+    observadores.erase(obs);
 }
 
 
- map<string,DTEmpleado> controladorResenia::getEmpleadosObservadores(){
+map<string,DTEmpleado> controladorResenia::getEmpleadosObservadores(){
     map<string,DTEmpleado> dtempleadosSuscriptos;
     set<IObserver*>::iterator iterObs;
     

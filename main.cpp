@@ -5,14 +5,14 @@
 #include "IControladorEmpleado.h"
 #include "IControladorColecciones.h"
 #include "IControladorResenia.h"
-#include "ControladorDatos.h"
 #include "Fabrica.h"
 
-#include <iostream>
-#include <string>
+#include "Estadia.h"
+
 
 int main()
 {
+  DTFecha fechaActual = DTFecha(1, 1, 2022);
   fabrica *fabrica = fabrica::getInstancia();
 
   IControladorHostales *controladorHostales = fabrica->getControladorHostales();
@@ -23,6 +23,146 @@ int main()
   IControladorEmpleado *controladorEmpleado = fabrica->getControladorEmpleado();
   //IControladorColecciones *controladorColecciones = fabrica->getControladorColecciones();
   controladorDatos *controladorDatos = fabrica->getControladorDatos();
+
+
+    // //Cargamos huespedes
+    // controladorUsuario->setEmailUsuario("huesped1@email.com");
+    // controladorUsuario->setNombreUsuario("huesped1");
+    // controladorUsuario->setContraseniaUsuario("123");
+    // controladorUsuario->setEsFinger(true);
+    // controladorUsuario->confirmarAltaHuesped();
+
+    // controladorUsuario->setEmailUsuario("huesped2@email.com");
+    // controladorUsuario->setNombreUsuario("huesped2");
+    // controladorUsuario->setContraseniaUsuario("223");
+    // controladorUsuario->setEsFinger(true);
+    // controladorUsuario->confirmarAltaHuesped();
+
+    // controladorUsuario->setEmailUsuario("huesped3@email.com");
+    // controladorUsuario->setNombreUsuario("huesped3");
+    // controladorUsuario->setContraseniaUsuario("323");
+    // controladorUsuario->setEsFinger(false);
+    // controladorUsuario->confirmarAltaHuesped();
+
+    // controladorUsuario->setEmailUsuario("huesped4@email.com");
+    // controladorUsuario->setNombreUsuario("huesped4");
+    // controladorUsuario->setContraseniaUsuario("423");
+    // controladorUsuario->setEsFinger(false);
+    // controladorUsuario->confirmarAltaHuesped();
+
+    // //Cargamos empleados
+    // controladorUsuario->setEmailUsuario("empleado1@email.com");
+    // controladorUsuario->setNombreUsuario("Empleado1");
+    // controladorUsuario->setContraseniaUsuario("123");
+    // controladorUsuario->setCargoEmpleado("Administrador");
+    // controladorUsuario->confirmarAltaEmpleado();
+
+    // controladorUsuario->setEmailUsuario("empleado2@email.com");
+    // controladorUsuario->setNombreUsuario("Empleado2");
+    // controladorUsuario->setContraseniaUsuario("223");
+    // controladorUsuario->setCargoEmpleado("Limpiador");
+    // controladorUsuario->confirmarAltaEmpleado();
+
+    // controladorUsuario->setEmailUsuario("empleado3@email.com");
+    // controladorUsuario->setNombreUsuario("Empleado3");
+    // controladorUsuario->setContraseniaUsuario("323");
+    // controladorUsuario->setCargoEmpleado("CargoPrueba");
+    // controladorUsuario->confirmarAltaEmpleado();
+
+    // controladorUsuario->setEmailUsuario("empleado4@email.com");
+    // controladorUsuario->setNombreUsuario("Empleado4");
+    // controladorUsuario->setContraseniaUsuario("423");
+    // controladorUsuario->setCargoEmpleado("Gerente");
+    // controladorUsuario->confirmarAltaEmpleado();
+
+    // //Carga hostales
+    // controladorHostales->setNombreHostal("hostal1");
+    // controladorHostales->setDireccionHostal("direccion1");
+    // controladorHostales->setTelefonoHostal("telefono1");
+    // controladorHostales->confirmarAltaHostal();
+    // //Habitacion del hostal 1
+    // controladorHostales->seleccionarHostal("hostal1");
+    // controladorHostales->setNumeroHabitacion(1);
+    // controladorHostales->setCapacidadHabitacion(10);
+    // controladorHostales->setPrecioHabitacion(1000);
+    // controladorHostales->confirmarAltaHabitacion();
+    // //Habitacion del hostal 1
+    // controladorHostales->seleccionarHostal("hostal1");
+    // controladorHostales->setNumeroHabitacion(4);
+    // controladorHostales->setCapacidadHabitacion(10);
+    // controladorHostales->setPrecioHabitacion(1000);
+    // controladorHostales->confirmarAltaHabitacion();
+    // //Realizar reserva hostal1 habitacion numero 1:
+    // controladorHostales->habitacionesDispDeHostal("hostal1", DTFecha(1, 1, 2022), DTFecha(10, 1, 2022), true);
+    // controladorHostales->seleccionarHabitacion(1);
+    // controladorHostales->seleccionarHuesped("huesped1@email.com");
+    // controladorHostales->agregarHuesped("huesped2@email.com");
+    // controladorHostales->agregarHuesped("huesped3@email.com");
+    // controladorHostales->confirmarReserva(fechaActual);
+    // //Realizar reserva hostal1 habitacion numero 4:
+    // controladorHostales->habitacionesDispDeHostal("hostal1", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
+    // controladorHostales->seleccionarHabitacion(4);
+    // controladorHostales->seleccionarHuesped("huesped1@email.com");
+    // controladorHostales->confirmarReserva(fechaActual);
+    // //Registrar Estadia
+    // controladorHostales->solicitarReservasDisp("huesped1@email.com");
+    // controladorHostales->seleccionarReserva(1);
+    // controladorHostales->setCheckinEstadia(DTFecha(1, 1, 2022));
+    // controladorHostales->confirmarEstadia();
+    // //Registrar Estadia
+    // controladorHostales->solicitarReservasDisp("huesped1@email.com");
+    // controladorHostales->seleccionarReserva(2);
+    // controladorHostales->setCheckinEstadia(DTFecha(1, 5, 2022));
+    // controladorHostales->confirmarEstadia();
+    // //Finalizar estadia
+    // controladorHostales->seleccionarHostal("hostal1");
+    // controladorHostales->mostrarEstadiasHuesped("huesped1@email.com");
+    // controladorHostales->setEstadiaSeleccionada(1);
+    // controladorHostales->setCheckoutEstadia(DTFecha(10, 1, 2022));
+    // controladorHostales->finalizarEstadia();
+
+
+
+    // controladorHostales->setNombreHostal("hostal2");
+    // controladorHostales->setDireccionHostal("direccion2");
+    // controladorHostales->setTelefonoHostal("telefono2");
+    // controladorHostales->confirmarAltaHostal();
+    // //Habitacion del hostal 2
+    // controladorHostales->seleccionarHostal("hostal2");
+    // controladorHostales->setNumeroHabitacion(2);
+    // controladorHostales->setCapacidadHabitacion(20);
+    // controladorHostales->setPrecioHabitacion(2000);
+    // controladorHostales->confirmarAltaHabitacion();
+    // //Realizar reserva hostal2 habitacion numero 2:
+    // controladorHostales->habitacionesDispDeHostal("hostal2", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
+    // controladorHostales->seleccionarHabitacion(2);
+    // controladorHostales->seleccionarHuesped("huesped4@email.com");
+    // controladorHostales->confirmarReserva(fechaActual);
+    // //Registrar Estadia
+    // controladorHostales->solicitarReservasDisp("huesped4@email.com");
+    // controladorHostales->seleccionarReserva(3);
+    // controladorHostales->setCheckinEstadia(DTFecha(1, 1, 2022));
+    // controladorHostales->confirmarEstadia();
+    // //Finalizar estadia
+    // controladorHostales->seleccionarHostal("hostal2");
+    // controladorHostales->mostrarEstadiasHuesped("huesped4@email.com");
+    // controladorHostales->setEstadiaSeleccionada(3);
+    // controladorHostales->setCheckoutEstadia(DTFecha(10, 1, 2022));
+    // controladorHostales->finalizarEstadia();
+
+
+    // controladorHostales->setNombreHostal("hostal3");
+    // controladorHostales->setDireccionHostal("direccion3");
+    // controladorHostales->setTelefonoHostal("telefono3");
+    // controladorHostales->confirmarAltaHostal();
+    // //Habitacion del hostal 3
+    // controladorHostales->seleccionarHostal("hostal3");
+    // controladorHostales->setNumeroHabitacion(3);
+    // controladorHostales->setCapacidadHabitacion(30);
+    // controladorHostales->setPrecioHabitacion(3000);
+    // controladorHostales->confirmarAltaHabitacion();
+
+  
 
   int mvar1;
   do
@@ -46,7 +186,8 @@ int main()
     cout << "16. Suscribirse a Notificaciones. \n";
     cout << "17. Consulta de Notificaciones. \n";
     cout << "18. Eliminar suscripcion. \n";
-    cout << "19. Salir. \n";
+    cout << "19. Cargar fecha del sistema. \n";
+    cout << "20. Salir. \n";
     cin >> mvar1;
     switch (mvar1)
     {
@@ -60,8 +201,9 @@ int main()
       controladorDatos->AgregarReservas(); 
       controladorDatos->AgregarEstadias(); 
       controladorDatos->AgregarFinalizarEstadia(); 
-      //controladorDatos->AgregarCalificacionesEstadia();
-      //controladorDatos->AgregarComentarCalificacion();
+      controladorDatos->AgregarCalificacionesEstadia();
+      controladorDatos->AgregarComentarCalificacion();
+      cout << "Datos de prueba cargados correctamente" << endl;
       
       break;
     } 
@@ -346,8 +488,8 @@ int main()
 
       if (confirmar == 1)
       {
-        controladorHostales->confirmarReserva();
-        cout << "Su reserva ha sido agregada con éxito. \n";
+        controladorHostales->confirmarReserva(fechaActual);
+        cout << "Su reserva ha sido agregada con éxito.\n";
       }
       else
       {
@@ -359,12 +501,10 @@ int main()
     {
       mapTopTres topTresHostales = controladorHostales->solicitarTopTresHostales();
       mapTopTres::iterator iterHostal;
-      int posicion = 1;
 
       for (iterHostal = topTresHostales.begin(); iterHostal != topTresHostales.end(); iterHostal++)
       {
-        cout << posicion << ") " << iterHostal->second << endl;
-        posicion++;
+        cout << iterHostal->first << ") " << iterHostal->second << endl;
       }
 
       string nombreHostal;
@@ -414,18 +554,11 @@ int main()
         DTReserva dtres = itColDTRes->second;
         cout << dtres;
       }
-      cout << "Seleccione la reserva ingresando su codigo, para registrar su estadía: \n";
+      cout << "Seleccione una reserva para registrar su estadia: \n";
       int numeroReserva;
       cin >> numeroReserva;
       controladorHostales->seleccionarReserva(numeroReserva);
-      int dia, mes, anio;
-      cout << "Ingrese el dia de checkIn: \n";
-      cin >> dia;
-      cout << "Ingrese el mes de checkIn: \n";
-      cin >> mes;
-      cout << "Ingrese el anio de checkIn: \n";
-      cin >> anio;
-      DTFecha fecha = DTFecha(dia, mes, anio);
+      DTFecha fecha = fechaActual;
       controladorHostales->setCheckinEstadia(fecha);
       cout << "Desea confirmar estadia? (0 -> NO, 1 -> SI ): \n";
       bool confirmar;
@@ -459,26 +592,23 @@ int main()
       cin >> emailHuesped;
       mapDTEstadia mapEst = controladorHostales->mostrarEstadiasHuesped(emailHuesped);
       mapDTEstadia::iterator itMapEst;
-      cout << "Ahora mostraremos las estadias activas de el huesped ingresado: \n";
-      for (itMapEst = mapEst.begin(); itMapEst != mapEst.end(); itMapEst++)
-      {
-        DTEstadia dtest = itMapEst->second;
-        cout << dtest <<endl;
+
+      if(mapEst.size() == 0){
+        cout << "El huesped no tiene estadias registradas sin finalizar" << endl;
+      } else {
+        for (itMapEst = mapEst.begin(); itMapEst != mapEst.end(); itMapEst++)
+        {
+          DTEstadia dtest = itMapEst->second;
+          cout << dtest << endl;
+        }
+        cout << "Seleccione la estadia ingresando su codigo: \n";
+        int codigoEstadia;
+        cin >> codigoEstadia;
+        controladorHostales->setEstadiaSeleccionada(codigoEstadia);
+        DTFecha fecha = fechaActual;
+        controladorHostales->setCheckoutEstadia(fecha);
+        controladorHostales->finalizarEstadia();
       }
-      cout << "Seleccione la estadia ingresando su codigo: \n";
-      int codigoEstadia;
-      cin >> codigoEstadia;
-      controladorHostales->setEstadiaSeleccionada(codigoEstadia);
-      int dia, mes, anio;
-      cout << "Ingrese el dia de checkout: \n";
-      cin >> dia;
-      cout << "Ingrese el mes de checkout: \n";
-      cin >> mes;
-      cout << "Ingrese el anio de checkout: \n";
-      cin >> anio;
-      DTFecha fecha = DTFecha(dia, mes, anio);
-      controladorHostales->setCheckoutEstadia(fecha);
-      controladorHostales->finalizarEstadia();
       break;
     }
     case 9: // calificar estadia
@@ -517,7 +647,7 @@ int main()
         for (itColEst = estadias.begin(); itColEst != estadias.end(); itColEst++)
         {
           DTEstadia dtest = itColEst->second;
-          cout << dtest;
+          cout << dtest << endl;
         }
         cout << "Seleccione numero de estadia: ";
 
@@ -533,15 +663,7 @@ int main()
         cout << "Ingrese Calificacion: ";
         cin >> cal;
 
-        int dia, mes, anio;
-        cout << "Ingrese Dia: ";
-        cin >> dia;
-        cout << "Ingrese Mes: ";
-        cin >> mes;
-        cout << "Ingrese Anio: ";
-        cin >> anio;
-
-        DTFecha fecha = DTFecha(dia, mes, anio);
+        DTFecha fecha = fechaActual;
         controladorEstadia->agregarCalificacion(res, cal, fecha);
 
         cout << "Calificacion realizada correctamente!" << endl;
@@ -558,24 +680,29 @@ int main()
       map<int, string> comentarios = controladorEmpleado->listaComentariosSinResp(email);
       map<int, string>::iterator iterComent;
 
-      cout << "Comentarios sin Responder del Empleado: " << endl;
+      if(comentarios.size() != 0){
+        cout << "Comentarios sin Responder del Empleado: " << endl;
 
-      for (iterComent = comentarios.begin(); iterComent != comentarios.end(); iterComent++)
-      {
-        cout << iterComent->first << " - ";
-        cout << iterComent->second << endl;
+        for (iterComent = comentarios.begin(); iterComent != comentarios.end(); iterComent++)
+        {
+          cout << iterComent->first << " - ";
+          cout << iterComent->second << endl;
+        }
+
+        string respuesta;
+        int numeroDeComentario;
+        cout << "Ingrese Numero de Comentario a Responder: " << endl;
+        cin >> numeroDeComentario;
+        cout << "Ingrese la Respuesta: " << endl;
+        cin.ignore();
+        getline (cin, respuesta);
+
+        controladorEmpleado->responderResenia(numeroDeComentario, respuesta);
+        cout << "Se ha guardado la respuesta" << endl;
+      } else {
+        cout << "Todos los comentarios están respondidos" << endl;
       }
 
-      string respuesta;
-      int numeroDeComentario;
-      cout << "Ingrese Numero de Comentario a Responder: " << endl;
-      cin >> numeroDeComentario;
-      cout << "Ingrese la Respuesta: " << endl;
-      cin.ignore();
-      getline (cin, respuesta);
-
-      controladorEmpleado->responderResenia(numeroDeComentario, respuesta);
-      cout << "Se ha guardado la respuesta";
       break;
     }
     case 11: // CONSULTA USUARIO
@@ -605,7 +732,7 @@ int main()
 
       break;
     }
-    case 12: // CONSULTA HOSTEL
+    case 12: // CONSULTA HOSTAL
     {
       mapColDTHostales colDThos = controladorHostales->obtenerHostalesRegistrados();
       mapColDTHostales::iterator itColDThos;
@@ -639,12 +766,18 @@ int main()
       controladorHostales->seleccionarHostal(hostalSeleccionado);
       colConsultaReserva colRes = controladorReserva->obtenerReservasdelHostal();
       colConsultaReserva::iterator itColRes;
-      cout << "A continuacion listamos las reservas de dicho hostal: \n";
-      for (itColRes = colRes.begin(); itColRes != colRes.end(); itColRes++)
+      
+      if (colRes.size() != 0){
+        cout << "A continuacion listamos las reservas de dicho hostal: \n";
+        for (itColRes = colRes.begin(); itColRes != colRes.end(); itColRes++)
       {
         DTInformacionReserva dtinfo = itColRes->second;
         cout << dtinfo;
       }
+      } else {
+        cout << "No hay reservas para el hostal seleccionado" << endl;
+      }
+
       break;
     }
     case 14: // CONSULTA ESTADIA
@@ -661,30 +794,29 @@ int main()
       cin.ignore();
       getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
+      cout << "Listaremos las estadias registradas en ese hostal: \n";
       mapColEstadias colEstadias = controladorEstadia->listarEstadias();
       mapColEstadias::iterator iterColEst;
       for (iterColEst = colEstadias.begin(); iterColEst != colEstadias.end(); iterColEst++)
       {
         DTEstadia dtest = iterColEst->second;
-        cout << dtest;
+        cout << dtest << endl;
       }
       cout << "Seleccione la estadia ingresando el codigo de la misma: \n";
       int codigo;
       cin >> codigo;
-      controladorEstadia->seleccionarEstadia(codigo);
-      mapColInfoEstadia mapColInfoEst = controladorEstadia->informacionEstadia();
-      mapColInfoEstadia::iterator itMapColInfoEst;
-      cout << "A continuacion se lista la informacion requerida de la estadia: \n";
-      for (itMapColInfoEst = mapColInfoEst.begin(); itMapColInfoEst != mapColInfoEst.end(); itMapColInfoEst++)
-      {
-        DTInformacionEstadia dtinfoest = itMapColInfoEst->second;
-        cout << dtinfoest;
-      }
-      DTReserva dtres = controladorEstadia->informacionReservaAsociada();
-      cout << dtres;
+      controladorEstadia->setEstadiaBuscada(codigo);
+      DTInformacionEstadia dtinfoest = controladorEstadia->informacionEstadia();
+      // mapColInfoEstadia::iterator itMapColInfoEst;
+      cout << "A continuacion se lista la informacion de la estadia: \n";
+      // for (itMapColInfoEst = mapColInfoEst.begin(); itMapColInfoEst != mapColInfoEst.end(); itMapColInfoEst++)
+      // {
+      //   DTInformacionEstadia dtinfoest = itMapColInfoEst->second;
+      cout << dtinfoest << endl;
+      // }
       break;
     }
-    case 15: // baja reserva --- raro
+    case 15: // baja reserva
     {
       cout << "A continuacion listaremos los hostales registrados en el sistema: \n";
       mapColDTHostales colDThos = controladorHostales->obtenerHostalesRegistrados();
@@ -695,6 +827,11 @@ int main()
         cout << dthos;
       }
       string hostalSeleccionado;
+      cout << "Seleccione un hostal ingresando su nombre: " << endl;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
+      controladorReserva->seleccionarHostal(hostalSeleccionado);
+      
       cout << "A continuacion listaremos las reservas del hostal seleccionado: \n";
       mapColReservas colDTRes = controladorReserva->listarReservasDeHostal();
       mapColReservas::iterator itRes;
@@ -734,6 +871,7 @@ int main()
       string emailEmpleado;
       cin >> emailEmpleado;
       controladorEmpleado->seleccionarEmpleadoANotificar(emailEmpleado);
+      cout << "El empleado se ha suscripto de manera exitosa! \n";
       break;
     }
     case 17: // consulta not
@@ -752,10 +890,14 @@ int main()
         cin >> email_emp;
         mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
         mapInfoNotificaciones::iterator aux;
-        for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
-        {
-          DTInformacionNotificaciones dtnfo = aux->second;
-          cout << dtnfo;
+        if(colnoti.size() > 0){
+          for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
+          {
+              DTInformacionNotificaciones dtnfo = aux->second;
+              cout << dtnfo <<endl;
+          }
+        }else{
+          cout << "No existen notificaciones para el empleado seleccionado. \n";
         }
       } else {
         cout << "No hay empleados suscriptos" << endl;
@@ -782,12 +924,29 @@ int main()
       }
       break;
     }
-    case 19:
+    case 19:{
+      int dia, mes, anio;
+      cout << "Ingrese el dia actual al sistema: ";
+      cin >> dia;
+
+      cout << "Ingrese el mes actual al sistema: ";
+      cin >> mes;
+
+      cout << "Ingrese el anio actual al sistema: ";
+      cin >> anio;
+
+      fechaActual = DTFecha(dia, mes, anio);
+
+      cout << "La fecha ha sido actualizada a: " << fechaActual << endl;
+      
+      break;
+    }
+    case 20:
     {
 
       break;
     }
     }
-  } while (mvar1 != 19);
+  } while (mvar1 != 20);
   return 0;
 }
