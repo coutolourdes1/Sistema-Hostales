@@ -203,7 +203,7 @@ void controladorDatos::AgregarReservas(){
     mapColHabitaciones aux = controladorHostales->habitacionesDispDeHostal(hostal, c_in1, c_out1, esgrupal);
     controladorHostales->seleccionarHabitacion(1);
     controladorHostales->seleccionarHuesped("sofia@mail.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(c_in1);
     
     //R2
     string hostal2 = "El Pony Pisador";
@@ -217,7 +217,7 @@ void controladorDatos::AgregarReservas(){
     controladorHostales->agregarHuesped("sam@mail.com");
     controladorHostales->agregarHuesped("merry@mail.com");
     controladorHostales->agregarHuesped("pipin@mail.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(c_in2);
     
     //R3
     string hostal3 = "La posada del finger";
@@ -228,7 +228,7 @@ void controladorDatos::AgregarReservas(){
     mapColHabitaciones aux3 = controladorHostales->habitacionesDispDeHostal(hostal3, c_in3, c_out3, esgrupal3);
     controladorHostales->seleccionarHabitacion(3);
     controladorHostales->seleccionarHuesped("sofia@mail.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(c_in3);
 
     //R4
     string hostal4 = "Caverna Lujosa";
@@ -239,7 +239,7 @@ void controladorDatos::AgregarReservas(){
     mapColHabitaciones aux4 = controladorHostales->habitacionesDispDeHostal(hostal4, c_in3, c_out3, esgrupal4);
     controladorHostales->seleccionarHabitacion(1);
     controladorHostales->seleccionarHuesped("seba@mail.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(c_in4);
 
 }
 
@@ -264,7 +264,7 @@ void controladorDatos::AgregarEstadias(){
     controladorHostales->confirmarEstadia();
 
     controladorHostales->seleccionarHostal("El Pony Pisador");
-    string email3 = "frodo@mail.com";
+    string email3 = "sam@mail.com";
     mapColDTReservas colDTRes3 = controladorHostales->solicitarReservasDisp(email3);
     controladorHostales->seleccionarReserva(2);
     DTFecha cIn3 = DTFecha(04, 01, 2001);
@@ -272,7 +272,7 @@ void controladorDatos::AgregarEstadias(){
     controladorHostales->confirmarEstadia();
 
     controladorHostales->seleccionarHostal("El Pony Pisador");
-    string email4 = "frodo@mail.com";
+    string email4 = "merry@mail.com";
     mapColDTReservas colDTRes4 = controladorHostales->solicitarReservasDisp(email4);
     controladorHostales->seleccionarReserva(2);
     DTFecha cIn4 = DTFecha(04, 01, 2001);
@@ -280,7 +280,7 @@ void controladorDatos::AgregarEstadias(){
     controladorHostales->confirmarEstadia();
 
     controladorHostales->seleccionarHostal("El Pony Pisador");
-    string email5 = "frodo@mail.com";
+    string email5 = "pipin@mail.com";
     mapColDTReservas colDTRes5 = controladorHostales->solicitarReservasDisp(email5);
     controladorHostales->seleccionarReserva(2);
     DTFecha cIn5 = DTFecha(04, 01, 2001);
@@ -302,26 +302,32 @@ void controladorDatos::AgregarFinalizarEstadia(){
     controladorHostales *controladorHostales = controladorHostales::getInstancia();
     controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
 
+    //Estadia 1
     controladorHostales->seleccionarHostal("La posada del finger");
     string huesped1 = "sofia@mail.com";
     mapDTEstadia mapEst1 = controladorHostales->mostrarEstadiasHuesped(huesped1);
     controladorHostales->setEstadiaSeleccionada(1);
     DTFecha fin_est1 = DTFecha(10, 05, 2022);
     controladorHostales->setCheckoutEstadia(fin_est1);
+    controladorHostales->finalizarEstadia();
 
+    //Estadia 2
     controladorHostales->seleccionarHostal("El Pony Pisador");
     string huesped2 = "frodo@mail.com";
     mapDTEstadia mapEst2 = controladorHostales->mostrarEstadiasHuesped(huesped2);
     controladorHostales->setEstadiaSeleccionada(2);
     DTFecha fin_est2 = DTFecha(05, 01, 2001);
     controladorHostales->setCheckoutEstadia(fin_est2);
+    controladorHostales->finalizarEstadia();
 
+    //Estadia 6
     controladorHostales->seleccionarHostal("Caverna Lujosa");
     string huesped3 = "seba@mail.com";
     mapDTEstadia mapEst3 = controladorHostales->mostrarEstadiasHuesped(huesped3);
     controladorHostales->setEstadiaSeleccionada(6);
     DTFecha fin_est3 = DTFecha(15, 06, 2022);
     controladorHostales->setCheckoutEstadia(fin_est3); 
+    controladorHostales->finalizarEstadia();
 }
 
 void controladorDatos::AgregarCalificacionesEstadia(){
@@ -329,40 +335,42 @@ void controladorDatos::AgregarCalificacionesEstadia(){
     controladorHostales *controladorHostales = controladorHostales::getInstancia();
     controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
  
-    controladorHostales->seleccionarHostal("La posada del finger");
+    controladorEstadia->seleccionarHostal("La posada del finger");
     string mail1 = "sofia@mail.com";
     mapColEstadias estadias = controladorEstadia->listarEstadiasFinalizadasHuesped(mail1);
     controladorEstadia->seleccionarEstadia(1);
     string res1 = "Un poco raro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía la del lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo";
     float cal1 = 3;
     DTFecha f_cal1 = DTFecha(11, 05, 2022);
+    cout << "antes" << endl;
     controladorEstadia->agregarCalificacion(res1, cal1, f_cal1);
+    cout << "despues" << endl;
 
-    controladorHostales->seleccionarHostal("El pony pisador");
+
+    controladorEstadia->seleccionarHostal("El Pony Pisador");
     string mail2 = "frodo@mail.com";
     mapColEstadias estadias1 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
-    controladorEstadia->seleccionarEstadia(1);
+    controladorEstadia->seleccionarEstadia(2);
     string res2 = "Se pone peligroso de noche, no recomiendo. Además no hay caja fuerte para guardar anillos";
     float cal2 = 2;
     DTFecha f_cal2 = DTFecha(05,01, 2001);
     controladorEstadia->agregarCalificacion(res2, cal2, f_cal2);
 
-    controladorHostales->seleccionarHostal("Caverna lujosa");
+    controladorEstadia->seleccionarHostal("Caverna Lujosa");
     string mail3 = "seba@mail.com";
     mapColEstadias estadias2 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
-    controladorEstadia->seleccionarEstadia(1);
+    controladorEstadia->seleccionarEstadia(6);
     string res3 = "Había pulgas en la habitacion. Que lugar más mamarracho!!";
     float cal3 = 1;
     DTFecha f_cal3 = DTFecha(15, 06, 2022);
     controladorEstadia->agregarCalificacion(res3, cal3, f_cal3);
-
 }
 
 void controladorDatos::AgregarComentarCalificacion(){
 
     controladorEmpleado *controladorEmpleado = controladorEmpleado::getInstancia();
     string empl = "barli@mail.com";
-    map<int, string> comentarios = controladorEmpleado->listaComentariosSinResp(empl);
+    controladorEmpleado->listaComentariosSinResp(empl);
     int numeroDeComentario = 1;
     string respuesta = "Desapareció y se fue sin pagar";
     controladorEmpleado->responderResenia(numeroDeComentario, respuesta);

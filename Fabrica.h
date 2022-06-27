@@ -28,7 +28,7 @@ class fabrica {
         IControladorResenia* getControladorResenia();
         IControladorReserva* getControladorReserva();
         IControladorEmpleado* getControladorEmpleado();
-        // controladorDatos* getControladorDatos();
+        controladorDatos* getControladorDatos();
 };
 
 #endif

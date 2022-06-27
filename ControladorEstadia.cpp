@@ -134,7 +134,6 @@ void controladorEstadia::agregarCalificacion(string comentario, float calificaci
 {
     estadia *estadia = getEstadiaSeleccionada();
 
-    // Agregar nuevo numero a resenia en el primer campo del constructor de la resenia
     controladorResenia* controladorResenia = controladorResenia::getInstancia();
     controladorResenia->agregarResenia(calificacion, comentario, fecha, estadia, hostalSeleccionado);
 
