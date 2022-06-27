@@ -571,7 +571,8 @@ int main()
       cout << "Ingrese Numero de Comentario a Responder: " << endl;
       cin >> numeroDeComentario;
       cout << "Ingrese la Respuesta: " << endl;
-      cin >> respuesta;
+      cin.ignore();
+      getline (cin, respuesta);
 
       controladorEmpleado->responderResenia(numeroDeComentario, respuesta);
       cout << "Se ha guardado la respuesta";

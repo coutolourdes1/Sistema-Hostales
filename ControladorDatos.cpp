@@ -349,7 +349,7 @@ void controladorDatos::AgregarCalificacionesEstadia(){
 
     controladorHostales->seleccionarHostal("Caverna lujosa");
     string mail3 = "seba@mail.com";
-    mapColEstadias estadias1 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
+    mapColEstadias estadias2 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
     controladorEstadia->seleccionarEstadia(1);
     string res3 = "Había pulgas en la habitacion. Que lugar más mamarracho!!";
     float cal3 = 1;
@@ -359,7 +359,12 @@ void controladorDatos::AgregarCalificacionesEstadia(){
 }
 
 void controladorDatos::AgregarComentarCalificacion(){
-    
 
+    controladorEmpleado *controladorEmpleado = controladorEmpleado::getInstancia();
+    string empl = "barli@mail.com";
+    map<int, string> comentarios = controladorEmpleado->listaComentariosSinResp(empl);
+    int numeroDeComentario = 1;
+    string respuesta = "Desapareció y se fue sin pagar";
+    controladorEmpleado->responderResenia(numeroDeComentario, respuesta);
 }
 
