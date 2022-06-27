@@ -60,20 +60,23 @@ colConsultaReserva controladorReserva::obtenerReservasdelHostal(){
         res_hab = hab->getDTReservasHabitacion();
         colReservas ReservasHab = hab->getReservasHabitacion();
         colReservas::iterator itReserva;
-        for (itReserva = ReservasHab.begin(); itReserva != ReservasHab.end(); itReserva++){
-            reserva* res = itReserva->second;
-            reservaGrupal* resGrupal = dynamic_cast<reservaGrupal*>(res);
-            if(resGrupal != 0){
-                colHuespedes* huespedesGrupal = resGrupal->getHuespedesReservaGrupal();
-                colHuespedes::iterator itHues;
-                for (itHues = huespedesGrupal->begin(); itHues != huespedesGrupal->end(); itHues++){
-                    nombres.insert(itHues->second->getNombre());   
-                } 
+        if(ReservasHab.size() != 0){
+            for (itReserva = ReservasHab.begin(); itReserva != ReservasHab.end(); itReserva++){
+                reserva* res = itReserva->second;
+                reservaGrupal* resGrupal = dynamic_cast<reservaGrupal*>(res);
+                if(resGrupal != 0){
+                    colHuespedes* huespedesGrupal = resGrupal->getHuespedesReservaGrupal();
+                    colHuespedes::iterator itHues;
+                    for (itHues = huespedesGrupal->begin(); itHues != huespedesGrupal->end(); itHues++){
+                        nombres.insert(itHues->second->getNombre());   
+                    } 
+                }
             }
+        DTInformacionReserva info = DTInformacionReserva(res_hab, num_hab, nombres);
+        datosReserva.insert(pair<int, DTInformacionReserva>(num_hab, info)); 
         }
     }
-    DTInformacionReserva info = DTInformacionReserva(res_hab, num_hab, nombres );
-    datosReserva.insert(pair<int, DTInformacionReserva>(num_hab, info)); 
+
 
     return datosReserva;
 }
@@ -96,6 +99,7 @@ void controladorReserva::seleccionarHostal(string nombreHostal){
 mapColReservas controladorReserva::listarReservasDeHostal(){
     colHabitaciones* habitacionesDelHostal = hostalSeleccionado->getHabitaciones();
     colHabitaciones::iterator iterHab;
+
 
     mapColReservas reservasDelHostal;
 

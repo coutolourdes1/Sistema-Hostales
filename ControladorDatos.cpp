@@ -339,13 +339,10 @@ void controladorDatos::AgregarCalificacionesEstadia(){
     string mail1 = "sofia@mail.com";
     mapColEstadias estadias = controladorEstadia->listarEstadiasFinalizadasHuesped(mail1);
     controladorEstadia->seleccionarEstadia(1);
-    string res1 = "Un poco raro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía la del lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo";
+    string res1 = "Un poco raro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía la del lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo.";
     float cal1 = 3;
     DTFecha f_cal1 = DTFecha(11, 05, 2022);
-    cout << "antes" << endl;
     controladorEstadia->agregarCalificacion(res1, cal1, f_cal1);
-    cout << "despues" << endl;
-
 
     controladorEstadia->seleccionarHostal("El Pony Pisador");
     string mail2 = "frodo@mail.com";
@@ -356,14 +353,17 @@ void controladorDatos::AgregarCalificacionesEstadia(){
     DTFecha f_cal2 = DTFecha(05,01, 2001);
     controladorEstadia->agregarCalificacion(res2, cal2, f_cal2);
 
+
     controladorEstadia->seleccionarHostal("Caverna Lujosa");
     string mail3 = "seba@mail.com";
-    mapColEstadias estadias2 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
+    mapColEstadias estadias2 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail3);
     controladorEstadia->seleccionarEstadia(6);
     string res3 = "Había pulgas en la habitacion. Que lugar más mamarracho!!";
     float cal3 = 1;
     DTFecha f_cal3 = DTFecha(15, 06, 2022);
     controladorEstadia->agregarCalificacion(res3, cal3, f_cal3);
+
+
 }
 
 void controladorDatos::AgregarComentarCalificacion(){

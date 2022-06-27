@@ -203,6 +203,7 @@ int main()
       controladorDatos->AgregarFinalizarEstadia(); 
       controladorDatos->AgregarCalificacionesEstadia();
       controladorDatos->AgregarComentarCalificacion();
+      cout << "Datos de prueba cargados correctamente" << endl;
       
       break;
     } 
@@ -488,7 +489,7 @@ int main()
       if (confirmar == 1)
       {
         controladorHostales->confirmarReserva(fechaActual);
-        cout << "Su reserva ha sido agregada con éxito.";
+        cout << "Su reserva ha sido agregada con éxito.\n";
       }
       else
       {
@@ -787,6 +788,7 @@ int main()
       cin.ignore();
       getline (cin, hostalSeleccionado);
       controladorHostales->seleccionarHostal(hostalSeleccionado);
+      cout << "Listaremos las estadias registradas en ese hostal: \n";
       mapColEstadias colEstadias = controladorEstadia->listarEstadias();
       mapColEstadias::iterator iterColEst;
       for (iterColEst = colEstadias.begin(); iterColEst != colEstadias.end(); iterColEst++)
@@ -795,7 +797,7 @@ int main()
         cout << dtest << endl;
       }
       cout << "Seleccione la estadia ingresando el codigo de la misma: \n";
-      int codigo = 1;
+      int codigo;
       cin >> codigo;
       controladorEstadia->setEstadiaBuscada(codigo);
       DTInformacionEstadia dtinfoest = controladorEstadia->informacionEstadia();
@@ -820,7 +822,8 @@ int main()
       }
       string hostalSeleccionado;
       cout << "Seleccione un hostal ingresando su nombre: " << endl;
-      cin >> hostalSeleccionado;
+      cin.ignore();
+      getline (cin, hostalSeleccionado);
       controladorReserva->seleccionarHostal(hostalSeleccionado);
       
       cout << "A continuacion listaremos las reservas del hostal seleccionado: \n";
@@ -862,46 +865,9 @@ int main()
       string emailEmpleado;
       cin >> emailEmpleado;
       controladorEmpleado->seleccionarEmpleadoANotificar(emailEmpleado);
+      cout << "El empleado se ha suscripto de manera exitosa! \n";
       break;
     }
-    // case 17: // consulta not
-    // {
-    //   cout << "A listaremos todos los empleados registrados en el sistema: \n";
-    //   mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-    //   mapDTEmpleado::iterator colDTEmple;
-    //   for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
-    //   {
-    //     DTEmpleado dte = colDTEmple->second;
-    //     cout << dte;
-    //   }
-    //   string email_emp;
-    //   cout << "Ingrese el email del empleado seleccionado: \n";
-    //   cin >> email_emp;
-    //   mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
-    //   mapInfoNotificaciones::iterator aux;
-    //   for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
-    //   {
-    //     DTInformacionNotificaciones dtnfo = aux->second;
-    //     cout << dtnfo << endl;
-    //   }
-    //   break;
-    // }
-    // case 18: // eliminar sus
-    // {
-    //   cout << "A listaremos todos los empleados registrados en el sistema: \n";
-    //   mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-    //   mapDTEmpleado::iterator colDTEmple;
-    //   for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
-    //   {
-    //     DTEmpleado dte = colDTEmple->second;
-    //     cout << dte;
-    //   }
-    //   cout << "Seleccione un empleado a recibir notificaciones, ingresando su email: \n";
-    //   string emailEmpleado;
-    //   cin >> emailEmpleado;
-    //   controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
-    //   break;
-    // }
     case 17: // consulta not
     {
       cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
@@ -918,10 +884,14 @@ int main()
         cin >> email_emp;
         mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
         mapInfoNotificaciones::iterator aux;
-        for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
-        {
-          DTInformacionNotificaciones dtnfo = aux->second;
-          cout << dtnfo;
+        if(colnoti.size() > 0){
+          for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
+          {
+              DTInformacionNotificaciones dtnfo = aux->second;
+              cout << dtnfo <<endl;
+          }
+        }else{
+          cout << "No existen notificaciones para el empleado seleccionado. \n";
         }
       } else {
         cout << "No hay empleados suscriptos" << endl;
