@@ -88,7 +88,7 @@ class IControladorHostales {
     virtual mapDTHuespedes solicitarDTHuespedes() = 0;
     virtual void seleccionarHuesped(string) = 0;
     virtual void agregarHuesped(string) = 0;
-    virtual void confirmarReserva() = 0;
+    virtual void confirmarReserva(DTFecha) = 0;
     virtual void cancelarReserva() = 0;
     virtual void liberarMemoriaReserva() = 0;
 

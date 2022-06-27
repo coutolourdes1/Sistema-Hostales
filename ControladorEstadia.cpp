@@ -176,7 +176,7 @@ mapColEstadias controladorEstadia::listarEstadias(){
     return coleccionesEstadias;
 }
 
-mapColInfoEstadia controladorEstadia::informacionEstadia(){
+DTInformacionEstadia controladorEstadia::informacionEstadia(){
 
     mapColInfoEstadia infoEstadia;
     controladorHostales* controladorHostal = controladorHostales::getInstancia();
@@ -185,12 +185,12 @@ mapColInfoEstadia controladorEstadia::informacionEstadia(){
     DTHostal dth = hostal_seleccionado->getDTHostal();
     DTEstadia dte = estadiaSeleccionada->getDTEstadia();
     DTReserva dtr = estadiaSeleccionada->getReserva()->getDTReserva();
-    int codEst = estadiaSeleccionada->getReserva()->getCodigo();
+    // int codEst = estadiaSeleccionada->getReserva()->getCodigo();
 
     DTInformacionEstadia info = DTInformacionEstadia(dth, dte, dtr);
-    infoEstadia.insert(pair<int, DTInformacionEstadia>(codEst,info));
+    // infoEstadia.insert(pair<int, DTInformacionEstadia>(codEst,info));
     
-    return infoEstadia;
+    return info;
 
 }
 

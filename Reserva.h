@@ -37,12 +37,14 @@ private:
     habitacion *hab;
     // estadia *Est;
     colEstadias est; // coleccion de estadias de la reserva
+    DTFecha fechaRealizada;
 public:
     // virtual float calcularCosto();
     // virtual DTReserva getReservas(); // Por que esta funcion devuelve lo mismo qie la de getDTReserva() ?
     // reserva();
-    reserva(int, DTFecha, DTFecha, huesped *, habitacion *);
+    reserva(int, DTFecha, DTFecha, huesped *, habitacion *, DTFecha);
     int getCodigo();
+    DTFecha getFechaRealizada();
     DTFecha getCheckIn();
     DTFecha getCheckOut();
     estado getEstadoReserva();
@@ -73,7 +75,7 @@ private:
 
 public:
     // void ReservaGrupal(int, DTFecha, DTFecha, huesped*, habitacion*, huesped**, int);
-    reservaGrupal(int, DTFecha, DTFecha, huesped *, habitacion *, colHuespedes, int);
+    reservaGrupal(int, DTFecha, DTFecha, huesped *, habitacion *, colHuespedes, int, DTFecha);
     colHuespedes* getHuespedesReservaGrupal();
     float calcularCosto(){
         return 0;
@@ -95,7 +97,7 @@ class reservaIndividual : public reserva
 private:
     bool pagado;
 public:
-    reservaIndividual(int, DTFecha, DTFecha, huesped *, habitacion *, bool);
+    reservaIndividual(int, DTFecha, DTFecha, huesped *, habitacion *, bool, DTFecha);
     // void setPagado(bool);
     // bool getPagado();
     DTReserva getDTReserva();

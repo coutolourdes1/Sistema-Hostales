@@ -732,37 +732,47 @@ int main()
     case 17: // consulta not
     {
       cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
-      map<string,DTEmpleado> colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
-      map<string,DTEmpleado>::iterator iterColDTEmpSuscriptos;
-      for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
-      {
-        cout << iterColDTEmpSuscriptos->second << endl;
+      mapDTEmpleado colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      mapDTEmpleado::iterator iterColDTEmpSuscriptos;
+
+      if(colDTEmpSuscriptos.size() != 0){
+        for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
+        {
+          cout << iterColDTEmpSuscriptos->second << endl;
+        }
+        string email_emp;
+        cout << "Ingrese el email del empleado seleccionado: \n";
+        cin >> email_emp;
+        mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
+        mapInfoNotificaciones::iterator aux;
+        for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
+        {
+          DTInformacionNotificaciones dtnfo = aux->second;
+          cout << dtnfo;
+        }
+      } else {
+        cout << "No hay empleados suscriptos" << endl;
       }
-      string email_emp;
-      cout << "Ingrese el email del empleado seleccionado: \n";
-      cin >> email_emp;
-      mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
-      mapInfoNotificaciones::iterator aux;
-      for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
-      {
-        DTInformacionNotificaciones dtnfo = aux->second;
-        cout << dtnfo;
-      }
+
       break;
     }
     case 18: // eliminar sus
     {
       cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
-      map<string,DTEmpleado> colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
-      map<string,DTEmpleado>::iterator iterColDTEmpSuscriptos;
-      for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
-      {
-        cout << iterColDTEmpSuscriptos->second << endl;
+      mapDTEmpleado colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      mapDTEmpleado::iterator iterColDTEmpSuscriptos;
+      if(colDTEmpSuscriptos.size() != 0){
+        for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
+        {
+          cout << iterColDTEmpSuscriptos->second << endl;
+        }
+        cout << "Seleccione un empleado a eliminar notificaciones, ingresando su email: \n";
+        string emailEmpleado;
+        cin >> emailEmpleado;
+        controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
+      } else {
+        cout << "No hay empleados suscriptos" << endl;
       }
-      cout << "Seleccione un empleado a eliminar notificaciones, ingresando su email: \n";
-      string emailEmpleado;
-      cin >> emailEmpleado;
-      controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
       break;
     }
     case 19:

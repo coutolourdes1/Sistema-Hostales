@@ -40,6 +40,6 @@ IControladorEmpleado* fabrica::getControladorEmpleado(){
     return controladorEmpleado::getInstancia();
 }
 
-controladorDatos* fabrica::getControladorDatos(){
-    return controladorDatos::getInstancia();
-}
+// controladorDatos* fabrica::getControladorDatos(){
+//     return controladorDatos::getInstancia();
+// }

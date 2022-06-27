@@ -12,6 +12,7 @@
 
 int main()
 {
+  DTFecha fechaActual = DTFecha(1, 1, 2022);
   fabrica *fabrica = fabrica::getInstancia();
 
   IControladorHostales *controladorHostales = fabrica->getControladorHostales();
@@ -22,7 +23,8 @@ int main()
   IControladorEmpleado *controladorEmpleado = fabrica->getControladorEmpleado();
   IControladorColecciones *controladorColecciones = fabrica->getControladorColecciones();
 
-      //Cargamos huespedes
+
+    //Cargamos huespedes
     controladorUsuario->setEmailUsuario("huesped1@email.com");
     controladorUsuario->setNombreUsuario("huesped1");
     controladorUsuario->setContraseniaUsuario("123");
@@ -95,12 +97,12 @@ int main()
     controladorHostales->seleccionarHuesped("huesped1@email.com");
     controladorHostales->agregarHuesped("huesped2@email.com");
     controladorHostales->agregarHuesped("huesped3@email.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(fechaActual);
     //Realizar reserva hostal1 habitacion numero 4:
     controladorHostales->habitacionesDispDeHostal("hostal1", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
     controladorHostales->seleccionarHabitacion(4);
     controladorHostales->seleccionarHuesped("huesped1@email.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(fechaActual);
     //Registrar Estadia
     controladorHostales->solicitarReservasDisp("huesped1@email.com");
     controladorHostales->seleccionarReserva(1);
@@ -134,7 +136,7 @@ int main()
     controladorHostales->habitacionesDispDeHostal("hostal2", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
     controladorHostales->seleccionarHabitacion(2);
     controladorHostales->seleccionarHuesped("huesped4@email.com");
-    controladorHostales->confirmarReserva();
+    controladorHostales->confirmarReserva(fechaActual);
     //Registrar Estadia
     controladorHostales->solicitarReservasDisp("huesped4@email.com");
     controladorHostales->seleccionarReserva(3);
@@ -181,7 +183,8 @@ int main()
     cout << "16. Suscribirse a Notificaciones. \n";
     cout << "17. Consulta de Notificaciones. \n";
     cout << "18. Eliminar suscripcion. \n";
-    cout << "19. Salir. \n";
+    cout << "19. Cargar fecha del sistema. \n";
+    cout << "20. Salir. \n";
     cin >> mvar1;
     switch (mvar1)
     {
@@ -461,7 +464,7 @@ int main()
 
       if (confirmar == 1)
       {
-        controladorHostales->confirmarReserva();
+        controladorHostales->confirmarReserva(fechaActual);
         cout << "Su reserva ha sido agregada con éxito.";
       }
       else
@@ -529,14 +532,7 @@ int main()
       int numeroReserva;
       cin >> numeroReserva;
       controladorHostales->seleccionarReserva(numeroReserva);
-      int dia, mes, anio;
-      cout << "Ingrese el dia de checkIn: \n";
-      cin >> dia;
-      cout << "Ingrese el mes de checkIn: \n";
-      cin >> mes;
-      cout << "Ingrese el anio de checkIn: \n";
-      cin >> anio;
-      DTFecha fecha = DTFecha(dia, mes, anio);
+      DTFecha fecha = fechaActual;
       controladorHostales->setCheckinEstadia(fecha);
       cout << "Desea confirmar estadia? (0 -> NO, 1 -> SI ): \n";
       bool confirmar;
@@ -582,14 +578,7 @@ int main()
         int codigoEstadia;
         cin >> codigoEstadia;
         controladorHostales->setEstadiaSeleccionada(codigoEstadia);
-        int dia, mes, anio;
-        cout << "Ingrese el dia de checkout: \n";
-        cin >> dia;
-        cout << "Ingrese el mes de checkout: \n";
-        cin >> mes;
-        cout << "Ingrese el anio de checkout: \n";
-        cin >> anio;
-        DTFecha fecha = DTFecha(dia, mes, anio);
+        DTFecha fecha = fechaActual;
         controladorHostales->setCheckoutEstadia(fecha);
         controladorHostales->finalizarEstadia();
       }
@@ -645,15 +634,7 @@ int main()
         cout << "Ingrese Calificacion: ";
         cin >> cal;
 
-        int dia, mes, anio;
-        cout << "Ingrese Dia: ";
-        cin >> dia;
-        cout << "Ingrese Mes: ";
-        cin >> mes;
-        cout << "Ingrese Anio: ";
-        cin >> anio;
-
-        DTFecha fecha = DTFecha(dia, mes, anio);
+        DTFecha fecha = fechaActual;
         controladorEstadia->agregarCalificacion(res, cal, fecha);
 
         cout << "Calificacion realizada correctamente!" << endl;
@@ -851,53 +832,105 @@ int main()
       controladorEmpleado->seleccionarEmpleadoANotificar(emailEmpleado);
       break;
     }
+    // case 17: // consulta not
+    // {
+    //   cout << "A listaremos todos los empleados registrados en el sistema: \n";
+    //   mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
+    //   mapDTEmpleado::iterator colDTEmple;
+    //   for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
+    //   {
+    //     DTEmpleado dte = colDTEmple->second;
+    //     cout << dte;
+    //   }
+    //   string email_emp;
+    //   cout << "Ingrese el email del empleado seleccionado: \n";
+    //   cin >> email_emp;
+    //   mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
+    //   mapInfoNotificaciones::iterator aux;
+    //   for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
+    //   {
+    //     DTInformacionNotificaciones dtnfo = aux->second;
+    //     cout << dtnfo << endl;
+    //   }
+    //   break;
+    // }
+    // case 18: // eliminar sus
+    // {
+    //   cout << "A listaremos todos los empleados registrados en el sistema: \n";
+    //   mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
+    //   mapDTEmpleado::iterator colDTEmple;
+    //   for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
+    //   {
+    //     DTEmpleado dte = colDTEmple->second;
+    //     cout << dte;
+    //   }
+    //   cout << "Seleccione un empleado a recibir notificaciones, ingresando su email: \n";
+    //   string emailEmpleado;
+    //   cin >> emailEmpleado;
+    //   controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
+    //   break;
+    // }
     case 17: // consulta not
     {
-      cout << "A listaremos todos los empleados registrados en el sistema: \n";
-      mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-      mapDTEmpleado::iterator colDTEmple;
-      for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
-      {
-        DTEmpleado dte = colDTEmple->second;
-        cout << dte;
+      cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
+      mapDTEmpleado colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      mapDTEmpleado::iterator iterColDTEmpSuscriptos;
+
+      if(colDTEmpSuscriptos.size() != 0){
+        for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
+        {
+          cout << iterColDTEmpSuscriptos->second << endl;
+        }
+        string email_emp;
+        cout << "Ingrese el email del empleado seleccionado: \n";
+        cin >> email_emp;
+        mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
+        mapInfoNotificaciones::iterator aux;
+        for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
+        {
+          DTInformacionNotificaciones dtnfo = aux->second;
+          cout << dtnfo;
+        }
+      } else {
+        cout << "No hay empleados suscriptos" << endl;
       }
-      string email_emp;
-      cout << "Ingrese el email del empleado seleccionado: \n";
-      cin >> email_emp;
-      mapInfoNotificaciones colnoti = controladorEmpleado->getInfoNotificaciones(email_emp);
-      mapInfoNotificaciones::iterator aux;
-      for (aux = colnoti.begin(); aux != colnoti.end(); aux++)
-      {
-        DTInformacionNotificaciones dtnfo = aux->second;
-        cout << dtnfo << endl;
-      }
+
       break;
     }
     case 18: // eliminar sus
     {
-      cout << "A listaremos todos los empleados registrados en el sistema: \n";
-      mapDTEmpleado colEmp = controladorEmpleado->listarEmpleados();
-      mapDTEmpleado::iterator colDTEmple;
-      for (colDTEmple = colEmp.begin(); colDTEmple != colEmp.end(); colDTEmple++)
-      {
-        DTEmpleado dte = colDTEmple->second;
-        cout << dte;
+      cout << "Listaremos todos los empleados que estan suscriptos a recibir notificaciones: \n";
+      mapDTEmpleado colDTEmpSuscriptos = controladorResenia->getEmpleadosObservadores();
+      mapDTEmpleado::iterator iterColDTEmpSuscriptos;
+      if(colDTEmpSuscriptos.size() != 0){
+        for (iterColDTEmpSuscriptos = colDTEmpSuscriptos.begin(); iterColDTEmpSuscriptos != colDTEmpSuscriptos.end(); iterColDTEmpSuscriptos++)
+        {
+          cout << iterColDTEmpSuscriptos->second << endl;
+        }
+        cout << "Seleccione un empleado a eliminar notificaciones, ingresando su email: \n";
+        string emailEmpleado;
+        cin >> emailEmpleado;
+        controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
+      } else {
+        cout << "No hay empleados suscriptos" << endl;
       }
-      cout << "Seleccione un empleado a recibir notificaciones, ingresando su email: \n";
-      string emailEmpleado;
-      cin >> emailEmpleado;
-      controladorEmpleado->seleccionarEmpleadoADesNotificar(emailEmpleado);
       break;
     }
     case 19:{
-      colEstadias* estadiasDelSistemas = controladorColecciones->getColEstadias();
-      colEstadias::iterator iterEst;
+      int dia, mes, anio;
+      cout << "Ingrese el dia actual al sistema: ";
+      cin >> dia;
 
-      for (iterEst = estadiasDelSistemas->begin(); iterEst != estadiasDelSistemas->end(); iterEst++){
-        cout << iterEst->second->getDTEstadia() << endl;
-      }
-      cout << "Esas son todas las estadias" << endl;
+      cout << "Ingrese el mes actual al sistema: ";
+      cin >> mes;
 
+      cout << "Ingrese el anio actual al sistema: ";
+      cin >> anio;
+
+      fechaActual = DTFecha(dia, mes, anio);
+
+      cout << "La fecha ha sido actualizada a: " << fechaActual << endl;
+      
       break;
     }
     case 20:

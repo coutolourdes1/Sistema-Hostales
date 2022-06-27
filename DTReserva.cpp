@@ -7,16 +7,21 @@ using namespace std;
 
 DTReserva::DTReserva(){}
 
-DTReserva::DTReserva(int cod, DTFecha checkin, DTFecha checkout, DTHuesped huesp, DTHabitacion hab){
+DTReserva::DTReserva(int cod, DTFecha checkin, DTFecha checkout, DTHuesped huesp, DTHabitacion hab, DTFecha realizada){
     this->codigo = cod;
     this->checkin = checkin;
     this->checkout = checkout;
     this->huesped = huesp;
     this->habitacion = hab;
+    this->fechaRealizada = realizada;
 }
 
 int DTReserva::getCodigo() const{
     return codigo;
+}
+
+DTFecha DTReserva::getFechaRealizada() const{
+    return fechaRealizada;
 }
 
 DTFecha DTReserva::getCheckin() const{
@@ -39,7 +44,7 @@ mapColDTHuespedes DTReservaGrupal::getColHuespedes() const {
     return otrosHuespedes;
 }
 
-DTReservaGrupal::DTReservaGrupal(int cod, DTFecha checkIn, DTFecha checkout, DTHuesped huesp, DTHabitacion hab, mapColDTHuespedes otrosHuesp) : DTReserva(cod, checkIn, checkout, huesp, hab){
+DTReservaGrupal::DTReservaGrupal(int cod, DTFecha checkIn, DTFecha checkout, DTHuesped huesp, DTHabitacion hab, mapColDTHuespedes otrosHuesp, DTFecha realizada) : DTReserva(cod, checkIn, checkout, huesp, hab, realizada){
     this->otrosHuespedes = otrosHuesp;
 }
 
@@ -47,7 +52,7 @@ bool DTReservaIndividual::getEstaPagada() const {
     return pagada;
 }
 
-DTReservaIndividual::DTReservaIndividual(int cod, DTFecha checkIn, DTFecha checkout, DTHuesped huesp, DTHabitacion hab, bool estaPagada) : DTReserva(cod, checkIn, checkout, huesp, hab){
+DTReservaIndividual::DTReservaIndividual(int cod, DTFecha checkIn, DTFecha checkout, DTHuesped huesp, DTHabitacion hab, bool estaPagada, DTFecha realizada) : DTReserva(cod, checkIn, checkout, huesp, hab, realizada){
     this->pagada = estaPagada;
 }
 
@@ -58,6 +63,7 @@ ostream &operator<<(ostream &out, const DTReservaGrupal &resGrupal){
     out << "CheckOut: " << resGrupal.getCheckout() << endl;
     out << "Datos de la habitacion: " << endl << resGrupal.getDTHabitacion() << endl;
     out << "Datos del huesped que la realizó: " << endl << resGrupal.getDTHuesped() << endl;
+    out << "Fecha de creación de la reserva: " << resGrupal.getFechaRealizada() << endl;
     out << "Datos de los huespedes incluidos en la reserva: " << endl;
 
     mapColDTHuespedes otrosHuesp = resGrupal.getColHuespedes();
@@ -77,6 +83,7 @@ ostream &operator<<(ostream &out, const DTReservaIndividual &resIndividual){
     out << "CheckOut: " << resIndividual.getCheckout() << endl;
     out << "Datos Habitacion: " << endl << resIndividual.getDTHabitacion() << endl;
     out << "Datos Huesped que la realizó: " << endl << resIndividual.getDTHuesped() << endl;
+    out << "Fecha de creación de la reserva: " << resIndividual.getFechaRealizada() << endl;
     out << "Pagada: ";
 
     if(resIndividual.getEstaPagada()){
@@ -93,6 +100,7 @@ ostream &operator<<(ostream &out, const DTReserva &res){
     out << "CheckIn: " << res.getCheckin() << endl;
     out << "CheckOut: " << res.getCheckout() << endl;
     out << "Datos Habitacion: " << endl << res.getDTHabitacion() << endl;
+    out << "Fecha de creación de la reserva: " << res.getFechaRealizada() << endl;
     out << "Datos Huesped que la realizó: " << endl << res.getDTHuesped() << endl;
 
     return out;

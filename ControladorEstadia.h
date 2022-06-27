@@ -40,7 +40,7 @@ public:
     // CASO DE USO CONSULTA ESTADIA 
     mapColEstadias listarEstadias();
     //void seleccionarEstadia(int);
-    mapColInfoEstadia informacionEstadia();
+    DTInformacionEstadia informacionEstadia();
     DTReserva informacionReservaAsociada();
 
     int getNuevoNumero();

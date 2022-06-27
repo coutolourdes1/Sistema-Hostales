@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-reserva::reserva(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab)
+reserva::reserva(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab, DTFecha fechaActual)
 {
     this->codigo = codigo;
     this->checkIn = checkIn;
@@ -13,6 +13,11 @@ reserva::reserva(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, 
     this->huesp = huesp;
     this->hab = hab;
     this->estadoReserva = abierta;
+    this->fechaRealizada = fechaActual;
+}
+
+DTFecha reserva::getFechaRealizada(){
+    return fechaRealizada;
 }
 
 huesped *reserva::getHuesped()
@@ -20,7 +25,7 @@ huesped *reserva::getHuesped()
     return huesp;
 }
 
-reservaGrupal::reservaGrupal(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab, colHuespedes otrosHuespedes, int canthuespedes) : reserva(codigo, checkIn, checkOut, huesp, hab)
+reservaGrupal::reservaGrupal(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab, colHuespedes otrosHuespedes, int canthuespedes, DTFecha fechaCreada) : reserva(codigo, checkIn, checkOut, huesp, hab, fechaCreada)
 {
     this->canthuespedes = canthuespedes;
     this->otrosHuespedes = new colHuespedes;
@@ -35,7 +40,7 @@ reservaGrupal::reservaGrupal(int codigo, DTFecha checkIn, DTFecha checkOut, hues
     this->otrosHuespedes->insert(pair<string, huesped *>(h->getEmail(), h));
 }
 
-reservaIndividual::reservaIndividual(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab, bool pagado) : reserva(codigo, checkIn, checkOut, huesp, hab)
+reservaIndividual::reservaIndividual(int codigo, DTFecha checkIn, DTFecha checkOut, huesped *huesp, habitacion *hab, bool pagado, DTFecha fechaCreada) : reserva(codigo, checkIn, checkOut, huesp, hab, fechaCreada)
 {
     this->pagado = pagado;
 }
@@ -88,11 +93,11 @@ DTReserva reservaGrupal::getDTReserva(){
         otrosHuesp.insert(pair<string, DTHuesped> (h->getEmail(), h->getDTHuesped()));
     }
 
-    return DTReservaGrupal(getCodigo(), getCheckIn(), getCheckOut(), getHuesped()->getDTHuesped(), getHabitacion()->getDTHabitacion(), otrosHuesp);
+    return DTReservaGrupal(getCodigo(), getCheckIn(), getCheckOut(), getHuesped()->getDTHuesped(), getHabitacion()->getDTHabitacion(), otrosHuesp, getFechaRealizada());
 }
 
 DTReserva reservaIndividual::getDTReserva(){
-    return DTReservaIndividual(getCodigo(), getCheckIn(), getCheckOut(), getHuesped()->getDTHuesped(), getHabitacion()->getDTHabitacion(), pagado);
+    return DTReservaIndividual(getCodigo(), getCheckIn(), getCheckOut(), getHuesped()->getDTHuesped(), getHabitacion()->getDTHabitacion(), pagado, getFechaRealizada());
 }
 
 void reserva::agregarEstadia(estadia *est)

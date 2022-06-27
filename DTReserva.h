@@ -18,10 +18,12 @@ class DTReserva{
         DTFecha checkin, checkout;
         DTHuesped huesped;
         DTHabitacion habitacion;
+        DTFecha fechaRealizada;
     public:
         DTReserva();
-        DTReserva(int, DTFecha, DTFecha, DTHuesped, DTHabitacion);
+        DTReserva(int, DTFecha, DTFecha, DTHuesped, DTHabitacion, DTFecha);
         int getCodigo() const;
+        DTFecha getFechaRealizada() const;
         DTFecha getCheckin() const;
         DTFecha getCheckout() const;
         DTHabitacion getDTHabitacion() const;
@@ -32,7 +34,7 @@ class DTReservaGrupal : public DTReserva{
     private:
         mapColDTHuespedes otrosHuespedes;
     public:
-        DTReservaGrupal(int, DTFecha, DTFecha, DTHuesped, DTHabitacion, mapColDTHuespedes);
+        DTReservaGrupal(int, DTFecha, DTFecha, DTHuesped, DTHabitacion, mapColDTHuespedes, DTFecha);
         mapColDTHuespedes getColHuespedes() const;
 };
 
@@ -40,7 +42,7 @@ class DTReservaIndividual : public DTReserva{
     private:
         bool pagada;
     public:
-        DTReservaIndividual(int, DTFecha, DTFecha, DTHuesped, DTHabitacion, bool);
+        DTReservaIndividual(int, DTFecha, DTFecha, DTHuesped, DTHabitacion, bool, DTFecha);
         bool getEstaPagada() const;
 };
 

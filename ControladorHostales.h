@@ -113,7 +113,7 @@ public:
     mapDTHuespedes solicitarDTHuespedes();
     void seleccionarHuesped(string);
     void agregarHuesped(string); // Reserva Grupal
-    void confirmarReserva();
+    void confirmarReserva(DTFecha);
     void cancelarReserva();
     // liberador de memoria
     void liberarMemoriaReserva();

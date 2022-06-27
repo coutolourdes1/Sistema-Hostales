@@ -397,7 +397,7 @@ void controladorHostales::agregarHuesped(string email)
     }
 }
 
-void controladorHostales::confirmarReserva()
+void controladorHostales::confirmarReserva(DTFecha fechaActual)
 {
     controladorReserva* controladorReserva = controladorReserva::getInstancia();
     int nuevoCodigo = controladorReserva->getNuevoCodigo();
@@ -408,7 +408,7 @@ void controladorHostales::confirmarReserva()
     if (getEsGrupal())
     {
         agregarHuesped(huespedSeleccionado->getEmail());
-        nuevaReserva = new reservaGrupal(nuevoCodigo, getCheckIn(), getCheckOut(), huespedSeleccionado, habSeleccionada, otrosHuespedes, otrosHuespedes.size());
+        nuevaReserva = new reservaGrupal(nuevoCodigo, getCheckIn(), getCheckOut(), huespedSeleccionado, habSeleccionada, otrosHuespedes, otrosHuespedes.size(), fechaActual);
 
         // for en otrosHuespedes y agregarle a cada huesped la habilitacion a la reserva
         mapColHuespedes::iterator iterHuesp;
@@ -419,7 +419,7 @@ void controladorHostales::confirmarReserva()
     }
     else
     {
-        nuevaReserva = new reservaIndividual(nuevoCodigo, getCheckIn(), getCheckOut(), huespedSeleccionado, habSeleccionada, false);
+        nuevaReserva = new reservaIndividual(nuevoCodigo, getCheckIn(), getCheckOut(), huespedSeleccionado, habSeleccionada, false, fechaActual);
         huespedSeleccionado->agregarReservaAPertenecientes(nuevaReserva);
     }
 
