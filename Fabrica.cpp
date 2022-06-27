@@ -12,6 +12,17 @@ fabrica* fabrica::getInstancia(){
     return instancia;
 }
 
+void fabrica::deleteControladores(){
+    delete controladorColecciones::getInstancia();
+    delete controladorUsuario::getInstancia();
+    delete controladorEstadia::getInstancia();
+    delete controladorHostales::getInstancia();
+    delete controladorResenia::getInstancia();
+    delete controladorReserva::getInstancia();
+    delete controladorEmpleado::getInstancia();
+    delete controladorDatos::getInstancia();
+}
+
 IControladorColecciones* fabrica::getControladorColecciones(){
     return controladorColecciones::getInstancia();
 }

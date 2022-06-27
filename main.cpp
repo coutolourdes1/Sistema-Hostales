@@ -21,148 +21,7 @@ int main()
   IControladorUsuario *controladorUsuario = fabrica->getControladorUsuario();
   IControladorResenia *controladorResenia = fabrica->getControladorResenia();
   IControladorEmpleado *controladorEmpleado = fabrica->getControladorEmpleado();
-  //IControladorColecciones *controladorColecciones = fabrica->getControladorColecciones();
   controladorDatos *controladorDatos = fabrica->getControladorDatos();
-
-
-    // //Cargamos huespedes
-    // controladorUsuario->setEmailUsuario("huesped1@email.com");
-    // controladorUsuario->setNombreUsuario("huesped1");
-    // controladorUsuario->setContraseniaUsuario("123");
-    // controladorUsuario->setEsFinger(true);
-    // controladorUsuario->confirmarAltaHuesped();
-
-    // controladorUsuario->setEmailUsuario("huesped2@email.com");
-    // controladorUsuario->setNombreUsuario("huesped2");
-    // controladorUsuario->setContraseniaUsuario("223");
-    // controladorUsuario->setEsFinger(true);
-    // controladorUsuario->confirmarAltaHuesped();
-
-    // controladorUsuario->setEmailUsuario("huesped3@email.com");
-    // controladorUsuario->setNombreUsuario("huesped3");
-    // controladorUsuario->setContraseniaUsuario("323");
-    // controladorUsuario->setEsFinger(false);
-    // controladorUsuario->confirmarAltaHuesped();
-
-    // controladorUsuario->setEmailUsuario("huesped4@email.com");
-    // controladorUsuario->setNombreUsuario("huesped4");
-    // controladorUsuario->setContraseniaUsuario("423");
-    // controladorUsuario->setEsFinger(false);
-    // controladorUsuario->confirmarAltaHuesped();
-
-    // //Cargamos empleados
-    // controladorUsuario->setEmailUsuario("empleado1@email.com");
-    // controladorUsuario->setNombreUsuario("Empleado1");
-    // controladorUsuario->setContraseniaUsuario("123");
-    // controladorUsuario->setCargoEmpleado("Administrador");
-    // controladorUsuario->confirmarAltaEmpleado();
-
-    // controladorUsuario->setEmailUsuario("empleado2@email.com");
-    // controladorUsuario->setNombreUsuario("Empleado2");
-    // controladorUsuario->setContraseniaUsuario("223");
-    // controladorUsuario->setCargoEmpleado("Limpiador");
-    // controladorUsuario->confirmarAltaEmpleado();
-
-    // controladorUsuario->setEmailUsuario("empleado3@email.com");
-    // controladorUsuario->setNombreUsuario("Empleado3");
-    // controladorUsuario->setContraseniaUsuario("323");
-    // controladorUsuario->setCargoEmpleado("CargoPrueba");
-    // controladorUsuario->confirmarAltaEmpleado();
-
-    // controladorUsuario->setEmailUsuario("empleado4@email.com");
-    // controladorUsuario->setNombreUsuario("Empleado4");
-    // controladorUsuario->setContraseniaUsuario("423");
-    // controladorUsuario->setCargoEmpleado("Gerente");
-    // controladorUsuario->confirmarAltaEmpleado();
-
-    // //Carga hostales
-    // controladorHostales->setNombreHostal("hostal1");
-    // controladorHostales->setDireccionHostal("direccion1");
-    // controladorHostales->setTelefonoHostal("telefono1");
-    // controladorHostales->confirmarAltaHostal();
-    // //Habitacion del hostal 1
-    // controladorHostales->seleccionarHostal("hostal1");
-    // controladorHostales->setNumeroHabitacion(1);
-    // controladorHostales->setCapacidadHabitacion(10);
-    // controladorHostales->setPrecioHabitacion(1000);
-    // controladorHostales->confirmarAltaHabitacion();
-    // //Habitacion del hostal 1
-    // controladorHostales->seleccionarHostal("hostal1");
-    // controladorHostales->setNumeroHabitacion(4);
-    // controladorHostales->setCapacidadHabitacion(10);
-    // controladorHostales->setPrecioHabitacion(1000);
-    // controladorHostales->confirmarAltaHabitacion();
-    // //Realizar reserva hostal1 habitacion numero 1:
-    // controladorHostales->habitacionesDispDeHostal("hostal1", DTFecha(1, 1, 2022), DTFecha(10, 1, 2022), true);
-    // controladorHostales->seleccionarHabitacion(1);
-    // controladorHostales->seleccionarHuesped("huesped1@email.com");
-    // controladorHostales->agregarHuesped("huesped2@email.com");
-    // controladorHostales->agregarHuesped("huesped3@email.com");
-    // controladorHostales->confirmarReserva(fechaActual);
-    // //Realizar reserva hostal1 habitacion numero 4:
-    // controladorHostales->habitacionesDispDeHostal("hostal1", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
-    // controladorHostales->seleccionarHabitacion(4);
-    // controladorHostales->seleccionarHuesped("huesped1@email.com");
-    // controladorHostales->confirmarReserva(fechaActual);
-    // //Registrar Estadia
-    // controladorHostales->solicitarReservasDisp("huesped1@email.com");
-    // controladorHostales->seleccionarReserva(1);
-    // controladorHostales->setCheckinEstadia(DTFecha(1, 1, 2022));
-    // controladorHostales->confirmarEstadia();
-    // //Registrar Estadia
-    // controladorHostales->solicitarReservasDisp("huesped1@email.com");
-    // controladorHostales->seleccionarReserva(2);
-    // controladorHostales->setCheckinEstadia(DTFecha(1, 5, 2022));
-    // controladorHostales->confirmarEstadia();
-    // //Finalizar estadia
-    // controladorHostales->seleccionarHostal("hostal1");
-    // controladorHostales->mostrarEstadiasHuesped("huesped1@email.com");
-    // controladorHostales->setEstadiaSeleccionada(1);
-    // controladorHostales->setCheckoutEstadia(DTFecha(10, 1, 2022));
-    // controladorHostales->finalizarEstadia();
-
-
-
-    // controladorHostales->setNombreHostal("hostal2");
-    // controladorHostales->setDireccionHostal("direccion2");
-    // controladorHostales->setTelefonoHostal("telefono2");
-    // controladorHostales->confirmarAltaHostal();
-    // //Habitacion del hostal 2
-    // controladorHostales->seleccionarHostal("hostal2");
-    // controladorHostales->setNumeroHabitacion(2);
-    // controladorHostales->setCapacidadHabitacion(20);
-    // controladorHostales->setPrecioHabitacion(2000);
-    // controladorHostales->confirmarAltaHabitacion();
-    // //Realizar reserva hostal2 habitacion numero 2:
-    // controladorHostales->habitacionesDispDeHostal("hostal2", DTFecha(1, 1, 2023), DTFecha(10, 1, 2023), false);
-    // controladorHostales->seleccionarHabitacion(2);
-    // controladorHostales->seleccionarHuesped("huesped4@email.com");
-    // controladorHostales->confirmarReserva(fechaActual);
-    // //Registrar Estadia
-    // controladorHostales->solicitarReservasDisp("huesped4@email.com");
-    // controladorHostales->seleccionarReserva(3);
-    // controladorHostales->setCheckinEstadia(DTFecha(1, 1, 2022));
-    // controladorHostales->confirmarEstadia();
-    // //Finalizar estadia
-    // controladorHostales->seleccionarHostal("hostal2");
-    // controladorHostales->mostrarEstadiasHuesped("huesped4@email.com");
-    // controladorHostales->setEstadiaSeleccionada(3);
-    // controladorHostales->setCheckoutEstadia(DTFecha(10, 1, 2022));
-    // controladorHostales->finalizarEstadia();
-
-
-    // controladorHostales->setNombreHostal("hostal3");
-    // controladorHostales->setDireccionHostal("direccion3");
-    // controladorHostales->setTelefonoHostal("telefono3");
-    // controladorHostales->confirmarAltaHostal();
-    // //Habitacion del hostal 3
-    // controladorHostales->seleccionarHostal("hostal3");
-    // controladorHostales->setNumeroHabitacion(3);
-    // controladorHostales->setCapacidadHabitacion(30);
-    // controladorHostales->setPrecioHabitacion(3000);
-    // controladorHostales->confirmarAltaHabitacion();
-
-  
 
   int mvar1;
   do
@@ -943,7 +802,8 @@ int main()
     }
     case 20:
     {
-
+      fabrica->deleteControladores();
+      delete fabrica;
       break;
     }
     }

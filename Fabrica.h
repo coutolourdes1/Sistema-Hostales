@@ -21,6 +21,7 @@ class fabrica {
         fabrica();
     public:
         static fabrica* getInstancia();
+        void deleteControladores();
         IControladorColecciones* getControladorColecciones();
         IControladorUsuario* getControladorUsuario();
         IControladorEstadia* getControladorEstadia();
