@@ -329,7 +329,6 @@ void controladorDatos::AgregarCalificacionesEstadia(){
     controladorHostales *controladorHostales = controladorHostales::getInstancia();
     controladorEstadia *controladorEstadia = controladorEstadia::getInstancia();
  
- /*  
     controladorHostales->seleccionarHostal("La posada del finger");
     string mail1 = "sofia@mail.com";
     mapColEstadias estadias = controladorEstadia->listarEstadiasFinalizadasHuesped(mail1);
@@ -340,20 +339,27 @@ void controladorDatos::AgregarCalificacionesEstadia(){
     controladorEstadia->agregarCalificacion(res1, cal1, f_cal1);
 
     controladorHostales->seleccionarHostal("El pony pisador");
-    string mail2 = "sofia@mail.com";
-    mapColEstadias estadias1 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail1);
+    string mail2 = "frodo@mail.com";
+    mapColEstadias estadias1 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
     controladorEstadia->seleccionarEstadia(1);
-    string res2 = "Un poco raro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacía tremendo ruido) y 2 pesas, la piscina parecía la del lago del Parque Rodó y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo";
-    float cal2 = 3;
-    DTFecha f_cal2 = DTFecha(11, 05, 2022);
+    string res2 = "Se pone peligroso de noche, no recomiendo. Además no hay caja fuerte para guardar anillos";
+    float cal2 = 2;
+    DTFecha f_cal2 = DTFecha(05,01, 2001);
     controladorEstadia->agregarCalificacion(res2, cal2, f_cal2);
-  */
 
+    controladorHostales->seleccionarHostal("Caverna lujosa");
+    string mail3 = "seba@mail.com";
+    mapColEstadias estadias1 = controladorEstadia->listarEstadiasFinalizadasHuesped(mail2);
+    controladorEstadia->seleccionarEstadia(1);
+    string res3 = "Había pulgas en la habitacion. Que lugar más mamarracho!!";
+    float cal3 = 1;
+    DTFecha f_cal3 = DTFecha(15, 06, 2022);
+    controladorEstadia->agregarCalificacion(res3, cal3, f_cal3);
 
 }
 
 void controladorDatos::AgregarComentarCalificacion(){
-
+    
 
 }
 

@@ -60,7 +60,8 @@ int main()
       controladorDatos->AgregarReservas(); 
       controladorDatos->AgregarEstadias(); 
       controladorDatos->AgregarFinalizarEstadia(); 
-      controladorDatos->AgregarCalificacionesEstadia();
+      //controladorDatos->AgregarCalificacionesEstadia();
+      //controladorDatos->AgregarComentarCalificacion();
       
       break;
     } 
